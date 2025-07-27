@@ -21,11 +21,7 @@
     // Intellisense via CMake Tools
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
 
-
-    // Active la coloration et linting GLSL (si tu installes une extension GLSL Linter)
-    "glsl.codelens.enable": true,
-    "glsl.lint.executable": "glslangValidator",
-    "glsl.lint.args": [
-        "-V"
-    ]
+    "cmake.debugConfig": {
+        "externalConsole": true,
+    },
 }
