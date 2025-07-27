@@ -42,7 +42,9 @@ int main()
     }
 
     // Création et compilation du shader
-    Shader ourShader("/home/guy/Documents/opengl/test/tes2/shader/triangle/tr.vs", "/home/guy/Documents/opengl/test/tes2/shader/triangle/tr.fs"); // Les fichiers de shader
+    const char *vs ="/home/guy/Documents/opengl/test/tes2/shader/triangle/tr.vs";
+    const char *fs="/home/guy/Documents/opengl/test/tes2/shader/triangle/tr.fs";
+    Shader ourShader(vs,fs); // Les fichiers de shader
 
     // Définition des données des sommets (positions et couleurs)
     float vertices[] = {

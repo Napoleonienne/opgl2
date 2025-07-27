@@ -2,10 +2,10 @@
     // Associe automatiquement les headers STL au langage C++
     "files.associations": {
         "*.h": "cpp",
-        "*.vert": "cpp",
-        "*.frag": "cpp",
-        "*.vs": "cpp",
-        "*.fs": "cpp"
+        "*.vert": "glsl",
+        "*.frag": "glsl",
+        "*.vs": "glsl",
+        "*.fs": "glsl"
         
     },
 
