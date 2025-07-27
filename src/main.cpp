@@ -13,6 +13,7 @@ const unsigned int SCR_HEIGHT = 600;
 
 int main()
 {
+
     // Initialisation et configuration de GLFW
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // Version majeure OpenGL
@@ -49,15 +50,16 @@ int main()
     // Définition des données des sommets (positions et couleurs)
     float vertices[] = {
         // positions         // couleurs
-         0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  // bas droite
+        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  // bas droite
         -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  // bas gauche
-         0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f   // haut
+        0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f   // haut
     };
 
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO); // Génère un VAO
     glGenBuffers(1, &VBO);      // Génère un VBO
 
+    
     // Bind du VAO puis du VBO et configuration des attributs de sommet
     glBindVertexArray(VAO);
 
@@ -71,6 +73,8 @@ int main()
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
+
+   
     // Boucle de rendu
     while (!glfwWindowShouldClose(window))
     {
@@ -80,9 +84,12 @@ int main()
         // Nettoyage de la fenêtre
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-
-        // Dessin du triangle
         ourShader.use();
+        float utime = glfwGetTime();
+        ourShader.setFloat("utime",utime);
+        std::cout << utime<< "\n";
+
+
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
 

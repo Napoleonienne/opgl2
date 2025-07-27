@@ -1,10 +1,15 @@
+
 #version 330 core
+out vec4 FragColor;  
+in vec3 ourColor;
 
-#ifdef GL_ES
-precision mediump float;
-#endif
+uniform float utime;
 
-out vec4 fragcolor;
-void main(){
-    fragcolor = vec4(0.4f,0.5f,0.6,1.0f);
+void main()
+
+{
+    float x =sin(utime*ourColor.x)*0.5;
+    float y = sin(utime)*0.4;
+    float z = sin(utime)*0.7;
+    FragColor = vec4(vec3(sin(x)),1.0);
 }
