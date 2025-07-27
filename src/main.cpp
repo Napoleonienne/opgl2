@@ -1,7 +1,7 @@
 #include "glad.h" // Charge les fonctions OpenGL
 #include <GLFW/glfw3.h> // Bibliothèque pour la gestion de la fenêtre et des entrées
 #include <iostream>
-#include "Shader.h" // Classe utilitaire pour les shaders
+#include "Shader.cpp" // Classe utilitaire pour les shaders
 
 // Callback appelée lors du redimensionnement de la fenêtre
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);

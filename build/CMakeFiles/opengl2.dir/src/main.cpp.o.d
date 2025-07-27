@@ -150,8 +150,7 @@ CMakeFiles/opengl2.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/guy/Documents/opengl/test/tes2/dependance/Shader.h \
- /home/guy/Documents/opengl/test/tes2/dependance/glad.h \
+ /home/guy/Documents/opengl/test/tes2/src/Shader.cpp \
  /usr/include/c++/11/fstream /usr/include/c++/11/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \

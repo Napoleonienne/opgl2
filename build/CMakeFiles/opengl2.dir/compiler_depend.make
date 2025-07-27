@@ -441,8 +441,7 @@ CMakeFiles/opengl2.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
-  ../dependance/Shader.h \
-  ../dependance/glad.h \
+  ../src/Shader.cpp \
   /usr/include/c++/11/fstream \
   /usr/include/c++/11/bits/codecvt.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
@@ -451,8 +450,6 @@ CMakeFiles/opengl2.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/sstream \
   /usr/include/c++/11/bits/sstream.tcc
 
-
-../dependance/Shader.h:
 
 ../src/main.cpp:
 

@@ -1,7 +1,3 @@
-
-
-#ifndef SHADER_H
-#define SHADER_H
 #include "glad.h"
 #include <string>
 #include <fstream>
@@ -118,5 +114,5 @@ private:
         }
     }
 };
-#endif
+
 
