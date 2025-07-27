@@ -1,0 +1,22 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/dependance",       // tes headers GLAD, Shader.h
+                "${workspaceFolder}/src",              // src/ pour shader.cpp inclusions
+                "${workspaceFolder}/src/glad",         // si tu includes glad/glad.h
+                "/usr/include",                        // système
+                "/usr/include/GL",                     // headers OpenGL s’il y a
+                "${default}"                           // les includePath par défaut
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc-12",        // utiliser gcc-12 si tu l’as
+            "cStandard": "c17",
+            "cppStandard": "c++17",                  // correspond à ton CMakeLists.txt
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ]
+}

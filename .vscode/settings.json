@@ -1,0 +1,31 @@
+{
+    // Associe automatiquement les headers STL au langage C++
+    "files.associations": {
+        "*.h": "cpp",
+        "*.vert": "cpp",
+        "*.frag": "cpp",
+        "*.vs": "cpp",
+        "*.fs": "cpp"
+        
+    },
+
+    // Configuration de l'extension CMake Tools
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.configureOnOpen": true,
+    "cmake.generator": "Unix Makefiles",
+    "cmake.configureArgs": [
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+    ],
+
+    // Intellisense via CMake Tools
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+
+
+    // Active la coloration et linting GLSL (si tu installes une extension GLSL Linter)
+    "glsl.codelens.enable": true,
+    "glsl.lint.executable": "glslangValidator",
+    "glsl.lint.args": [
+        "-V"
+    ]
+}

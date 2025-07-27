@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/guy/Documents/opengl/test/tes2/build",
+  "command": "/usr/bin/c++  -I/home/guy/Documents/opengl/test/tes2/dependance -isystem /usr/lib -g -o CMakeFiles/opengl2.dir/src/main.cpp.o -c /home/guy/Documents/opengl/test/tes2/src/main.cpp",
+  "file": "/home/guy/Documents/opengl/test/tes2/src/main.cpp"
+},
+{
+  "directory": "/home/guy/Documents/opengl/test/tes2/build",
+  "command": "/usr/bin/gcc-12  -I/home/guy/Documents/opengl/test/tes2/dependance -isystem /usr/lib -g -o CMakeFiles/opengl2.dir/src/glad.c.o -c /home/guy/Documents/opengl/test/tes2/src/glad.c",
+  "file": "/home/guy/Documents/opengl/test/tes2/src/glad.c"
+},
+{
+  "directory": "/home/guy/Documents/opengl/test/tes2/build",
+  "command": "/usr/bin/c++  -I/home/guy/Documents/opengl/test/tes2/dependance -isystem /usr/lib -g -o CMakeFiles/opengl2.dir/src/Shader.cpp.o -c /home/guy/Documents/opengl/test/tes2/src/Shader.cpp",
+  "file": "/home/guy/Documents/opengl/test/tes2/src/Shader.cpp"
+}
+]
