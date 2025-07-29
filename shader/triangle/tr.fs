@@ -4,12 +4,11 @@ out vec4 FragColor;
 in vec3 ourColor;
 
 uniform float utime;
-
+out vec3 pos;
 void main()
 
 {
-    float x =sin(utime*ourColor.x)*0.5;
-    float y = sin(utime)*0.4;
-    float z = sin(utime)*0.7;
-    FragColor = vec4(vec3(sin(x)),1.0);
+    vec4 temp = vec3(0.1,0.647,0.35);
+    FragColor = vec4(temp,1);
+    pos = temp;
 }

@@ -87,7 +87,7 @@ int main()
         ourShader.use();
         float utime = glfwGetTime();
         ourShader.setFloat("utime",utime);
-        std::cout << utime<< "\n";
+        ourShader.setFloat("decal",0.5f);
 
 
         glBindVertexArray(VAO);
