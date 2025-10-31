@@ -111,116 +111,116 @@ CMakeFiles/OpenGL2.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/src/main.cpp -o CMakeFiles/OpenGL2.dir/src/main.cpp.s
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.o: /home/guy/Bureau/opgl2/externe/imgui/imgui.cpp
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.o -MF CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.o.d -o CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.o -c /home/guy/Bureau/opgl2/externe/imgui/imgui.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
+CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o: /home/guy/Bureau/opgl2/external/imgui/imgui.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o -MF CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o.d -o CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui.cpp
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/externe/imgui/imgui.cpp > CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.i
+CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/external/imgui/imgui.cpp > CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.i
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/externe/imgui/imgui.cpp -o CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.s
+CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/external/imgui/imgui.cpp -o CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.s
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.o: /home/guy/Bureau/opgl2/externe/imgui/imgui_draw.cpp
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.o -MF CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.o.d -o CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.o -c /home/guy/Bureau/opgl2/externe/imgui/imgui_draw.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o: /home/guy/Bureau/opgl2/external/imgui/imgui_draw.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o -MF CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o.d -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_draw.cpp
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/externe/imgui/imgui_draw.cpp > CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.i
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/external/imgui/imgui_draw.cpp > CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.i
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/externe/imgui/imgui_draw.cpp -o CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.s
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/external/imgui/imgui_draw.cpp -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.s
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.o: /home/guy/Bureau/opgl2/externe/imgui/imgui_tables.cpp
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.o -MF CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.o.d -o CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.o -c /home/guy/Bureau/opgl2/externe/imgui/imgui_tables.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o: /home/guy/Bureau/opgl2/external/imgui/imgui_tables.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o -MF CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o.d -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_tables.cpp
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/externe/imgui/imgui_tables.cpp > CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.i
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/external/imgui/imgui_tables.cpp > CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.i
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/externe/imgui/imgui_tables.cpp -o CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.s
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/external/imgui/imgui_tables.cpp -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.s
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.o: /home/guy/Bureau/opgl2/externe/imgui/imgui_widgets.cpp
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.o -MF CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.o -c /home/guy/Bureau/opgl2/externe/imgui/imgui_widgets.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o: /home/guy/Bureau/opgl2/external/imgui/imgui_widgets.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o -MF CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_widgets.cpp
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/externe/imgui/imgui_widgets.cpp > CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.i
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/external/imgui/imgui_widgets.cpp > CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.i
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/externe/imgui/imgui_widgets.cpp -o CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.s
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/external/imgui/imgui_widgets.cpp -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.s
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.o: /home/guy/Bureau/opgl2/externe/imgui/imgui_demo.cpp
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.o -MF CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.o.d -o CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.o -c /home/guy/Bureau/opgl2/externe/imgui/imgui_demo.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o: /home/guy/Bureau/opgl2/external/imgui/imgui_demo.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o -MF CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o.d -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_demo.cpp
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/externe/imgui/imgui_demo.cpp > CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.i
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/external/imgui/imgui_demo.cpp > CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.i
 
-CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/externe/imgui/imgui_demo.cpp -o CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.s
+CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/external/imgui/imgui_demo.cpp -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.s
 
-CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
-CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.o: /home/guy/Bureau/opgl2/externe/imgui/backends/imgui_impl_glfw.cpp
-CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.o -MF CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.o.d -o CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.o -c /home/guy/Bureau/opgl2/externe/imgui/backends/imgui_impl_glfw.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
+CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o: /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_glfw.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o -MF CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o.d -o CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_glfw.cpp
 
-CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/externe/imgui/backends/imgui_impl_glfw.cpp > CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.i
+CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_glfw.cpp > CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.i
 
-CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/externe/imgui/backends/imgui_impl_glfw.cpp -o CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.s
+CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_glfw.cpp -o CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.s
 
-CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
-CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.o: /home/guy/Bureau/opgl2/externe/imgui/backends/imgui_impl_opengl3.cpp
-CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.o -MF CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.o -c /home/guy/Bureau/opgl2/externe/imgui/backends/imgui_impl_opengl3.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o: CMakeFiles/OpenGL2.dir/flags.make
+CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o: /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_opengl3.cpp
+CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o: CMakeFiles/OpenGL2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/guy/Bureau/opgl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o -MF CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_opengl3.cpp
 
-CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/externe/imgui/backends/imgui_impl_opengl3.cpp > CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.i
+CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_opengl3.cpp > CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.i
 
-CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/externe/imgui/backends/imgui_impl_opengl3.cpp -o CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.s
+CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_opengl3.cpp -o CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.s
 
 # Object files for target OpenGL2
 OpenGL2_OBJECTS = \
 "CMakeFiles/OpenGL2.dir/src/Shader.cpp.o" \
 "CMakeFiles/OpenGL2.dir/src/glad.c.o" \
 "CMakeFiles/OpenGL2.dir/src/main.cpp.o" \
-"CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.o" \
-"CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.o" \
-"CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.o" \
-"CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.o" \
-"CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.o" \
-"CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.o" \
-"CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.o"
+"CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o" \
+"CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o" \
+"CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o" \
+"CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o" \
+"CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o" \
+"CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o" \
+"CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o"
 
 # External object files for target OpenGL2
 OpenGL2_EXTERNAL_OBJECTS =
@@ -228,13 +228,13 @@ OpenGL2_EXTERNAL_OBJECTS =
 OpenGL2: CMakeFiles/OpenGL2.dir/src/Shader.cpp.o
 OpenGL2: CMakeFiles/OpenGL2.dir/src/glad.c.o
 OpenGL2: CMakeFiles/OpenGL2.dir/src/main.cpp.o
-OpenGL2: CMakeFiles/OpenGL2.dir/externe/imgui/imgui.cpp.o
-OpenGL2: CMakeFiles/OpenGL2.dir/externe/imgui/imgui_draw.cpp.o
-OpenGL2: CMakeFiles/OpenGL2.dir/externe/imgui/imgui_tables.cpp.o
-OpenGL2: CMakeFiles/OpenGL2.dir/externe/imgui/imgui_widgets.cpp.o
-OpenGL2: CMakeFiles/OpenGL2.dir/externe/imgui/imgui_demo.cpp.o
-OpenGL2: CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_glfw.cpp.o
-OpenGL2: CMakeFiles/OpenGL2.dir/externe/imgui/backends/imgui_impl_opengl3.cpp.o
+OpenGL2: CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o
+OpenGL2: CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o
+OpenGL2: CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o
+OpenGL2: CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o
+OpenGL2: CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o
+OpenGL2: CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o
+OpenGL2: CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o
 OpenGL2: CMakeFiles/OpenGL2.dir/build.make
 OpenGL2: /usr/lib/x86_64-linux-gnu/libGLX.so
 OpenGL2: /usr/lib/x86_64-linux-gnu/libOpenGL.so

@@ -104,11 +104,11 @@
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/home/guy/Bureau/opgl2/externe/imgui"
+					"path" : "/home/guy/Bureau/opgl2/external/imgui"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/home/guy/Bureau/opgl2/externe/imgui/backends"
+					"path" : "/home/guy/Bureau/opgl2/external/imgui/backends"
 				}
 			],
 			"language" : "CXX",
@@ -159,11 +159,11 @@
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/home/guy/Bureau/opgl2/externe/imgui"
+					"path" : "/home/guy/Bureau/opgl2/external/imgui"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/home/guy/Bureau/opgl2/externe/imgui/backends"
+					"path" : "/home/guy/Bureau/opgl2/external/imgui/backends"
 				}
 			],
 			"language" : "C",
@@ -297,43 +297,43 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "externe/imgui/imgui.cpp",
+			"path" : "external/imgui/imgui.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "externe/imgui/imgui_draw.cpp",
+			"path" : "external/imgui/imgui_draw.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "externe/imgui/imgui_tables.cpp",
+			"path" : "external/imgui/imgui_tables.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "externe/imgui/imgui_widgets.cpp",
+			"path" : "external/imgui/imgui_widgets.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "externe/imgui/imgui_demo.cpp",
+			"path" : "external/imgui/imgui_demo.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "externe/imgui/backends/imgui_impl_glfw.cpp",
+			"path" : "external/imgui/backends/imgui_impl_glfw.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "externe/imgui/backends/imgui_impl_opengl3.cpp",
+			"path" : "external/imgui/backends/imgui_impl_opengl3.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

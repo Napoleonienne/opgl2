@@ -18,7 +18,7 @@ if(NOT GLFW_FOUND)
 endif()
 
 # Chemin ImGui
-set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/externe/imgui)
+set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/external/imgui)
 
 # Sources du projet
 file(GLOB_RECURSE PROJECT_SOURCES
