@@ -1,27 +1,25 @@
 #pragma once
-
-#include "glad.h"// include glad to get all the required OpenGL headers
-  
 #include <string>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-  
+#include <glad.h> // include glad BEFORE any GLFW includes that might follow
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
-class Shader
-{
+
+
+
+class Shader {
 public:
-    // the program ID
-    unsigned int ID;
-  
-    // constructor reads and builds the shader
+    GLuint ID;
     Shader(const char* vertexPath, const char* fragmentPath);
-    // use/activate the shader
-    void use();
-    // utility uniform functions
-    void setBool(const std::string &name, bool value) const; 
+    void use() const;
 
-    void setInt(const std::string &name, int value) const;
-       
-    void setFloat(const std::string &name, float value) const;
+    template<typename T>
+    void set(const std::string& name, const T& value) const;
+
+    void uniformetex(std::string& name, const unsigned int value) const;
+
+private:
+    void checkCompileErrors(GLuint shader, const std::string &type) const;
 };
+
+#include <Shader.inl>

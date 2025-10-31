@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/opengl2.dir/src/main.cpp.o CMakeFiles/opengl2.dir/src/glad.c.o CMakeFiles/opengl2.dir/src/Shader.cpp.o -o opengl2   -L/usr/lib/gcc/x86_64-linux-gnu/12  -lglfw 

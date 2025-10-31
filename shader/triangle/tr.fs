@@ -2,10 +2,12 @@
 // ================
 #version 330 core
 out vec4 FragColor;
-// in vec3 ourColor;
-in vec3 ourPosition;
-
+in vec2 Textcord;
+uniform sampler2D ourTexture;
+uniform float utime;
+uniform vec4 couleur;
 void main()
 {
-    FragColor = vec4(ourPosition, 1.0);    // note how the position value is linearly interpolated to get all the different colors
+    //FragColor = vec4(0.5,0.6,0.1, 1.0); 
+    FragColor = texture(ourTexture,Textcord)*couleur;
 }
