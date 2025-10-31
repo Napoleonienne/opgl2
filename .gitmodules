@@ -1,6 +1,3 @@
-[submodule "externe/imgui"]
-	path = externe/external/imgui
-	url = https://github.com/ocornut/imgui.git
 [submodule "external/imgui"]
 	path = external/imgui
 	url = https://github.com/ocornut/imgui.git
