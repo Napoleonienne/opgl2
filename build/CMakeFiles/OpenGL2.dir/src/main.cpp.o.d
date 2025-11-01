@@ -324,10 +324,10 @@ CMakeFiles/OpenGL2.dir/src/main.cpp.o: \
  /usr/include/glm/ext/vector_uint1_sized.hpp /usr/include/c++/13/cstring \
  /usr/include/glm/gtc/type_ptr.inl \
  /home/guy/Bureau/opgl2/dependance/Shader.inl \
- /home/guy/Bureau/opgl2/externe/imgui/imgui.h \
- /home/guy/Bureau/opgl2/externe/imgui/imconfig.h \
- /home/guy/Bureau/opgl2/externe/imgui/backends/imgui_impl_glfw.h \
- /home/guy/Bureau/opgl2/externe/imgui/backends/imgui_impl_opengl3.h \
+ /home/guy/Bureau/opgl2/external/imgui/imgui.h \
+ /home/guy/Bureau/opgl2/external/imgui/imconfig.h \
+ /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_glfw.h \
+ /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_opengl3.h \
  /usr/include/glm/gtx/string_cast.hpp \
  /usr/include/glm/gtc/type_precision.hpp \
  /usr/include/glm/gtc/type_precision.inl \
