@@ -16,7 +16,10 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/guy/Bureau/opgl2/external/imgui/imgui_draw.cpp" "CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o" "gcc" "CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o.d"
   "/home/guy/Bureau/opgl2/external/imgui/imgui_tables.cpp" "CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o" "gcc" "CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o.d"
   "/home/guy/Bureau/opgl2/external/imgui/imgui_widgets.cpp" "CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o" "gcc" "CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o.d"
+  "/home/guy/Bureau/opgl2/src/CameraController.cpp" "CMakeFiles/OpenGL2.dir/src/CameraController.cpp.o" "gcc" "CMakeFiles/OpenGL2.dir/src/CameraController.cpp.o.d"
   "/home/guy/Bureau/opgl2/src/Shader.cpp" "CMakeFiles/OpenGL2.dir/src/Shader.cpp.o" "gcc" "CMakeFiles/OpenGL2.dir/src/Shader.cpp.o.d"
+  "/home/guy/Bureau/opgl2/src/Sphere.cpp" "CMakeFiles/OpenGL2.dir/src/Sphere.cpp.o" "gcc" "CMakeFiles/OpenGL2.dir/src/Sphere.cpp.o.d"
+  "/home/guy/Bureau/opgl2/src/lampe.cpp" "CMakeFiles/OpenGL2.dir/src/lampe.cpp.o" "gcc" "CMakeFiles/OpenGL2.dir/src/lampe.cpp.o.d"
   "/home/guy/Bureau/opgl2/src/main.cpp" "CMakeFiles/OpenGL2.dir/src/main.cpp.o" "gcc" "CMakeFiles/OpenGL2.dir/src/main.cpp.o.d"
   )
 

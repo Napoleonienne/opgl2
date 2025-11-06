@@ -26,6 +26,8 @@ file(GLOB_RECURSE PROJECT_SOURCES
     "${CMAKE_SOURCE_DIR}/src/*.c"
 
 )
+message(STATUS "Sources trouv�es : ${PROJECT_SOURCES}")
+
 
 # Sources ImGui
 set(IMGUI_SOURCES
@@ -37,6 +39,7 @@ set(IMGUI_SOURCES
     ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
     ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 )
+
 
 # Création de l’exécutable
 add_executable(${PROJECT_NAME}

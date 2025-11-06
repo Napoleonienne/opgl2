@@ -297,6 +297,30 @@ external/imgui/imgui_widgets.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.s
 .PHONY : external/imgui/imgui_widgets.cpp.s
 
+src/CameraController.o: src/CameraController.cpp.o
+.PHONY : src/CameraController.o
+
+# target to build an object file
+src/CameraController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/src/CameraController.cpp.o
+.PHONY : src/CameraController.cpp.o
+
+src/CameraController.i: src/CameraController.cpp.i
+.PHONY : src/CameraController.i
+
+# target to preprocess a source file
+src/CameraController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/src/CameraController.cpp.i
+.PHONY : src/CameraController.cpp.i
+
+src/CameraController.s: src/CameraController.cpp.s
+.PHONY : src/CameraController.s
+
+# target to generate assembly for a file
+src/CameraController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/src/CameraController.cpp.s
+.PHONY : src/CameraController.cpp.s
+
 src/Shader.o: src/Shader.cpp.o
 .PHONY : src/Shader.o
 
@@ -321,6 +345,30 @@ src/Shader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/src/Shader.cpp.s
 .PHONY : src/Shader.cpp.s
 
+src/Sphere.o: src/Sphere.cpp.o
+.PHONY : src/Sphere.o
+
+# target to build an object file
+src/Sphere.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/src/Sphere.cpp.o
+.PHONY : src/Sphere.cpp.o
+
+src/Sphere.i: src/Sphere.cpp.i
+.PHONY : src/Sphere.i
+
+# target to preprocess a source file
+src/Sphere.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/src/Sphere.cpp.i
+.PHONY : src/Sphere.cpp.i
+
+src/Sphere.s: src/Sphere.cpp.s
+.PHONY : src/Sphere.s
+
+# target to generate assembly for a file
+src/Sphere.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/src/Sphere.cpp.s
+.PHONY : src/Sphere.cpp.s
+
 src/glad.o: src/glad.c.o
 .PHONY : src/glad.o
 
@@ -344,6 +392,30 @@ src/glad.s: src/glad.c.s
 src/glad.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/src/glad.c.s
 .PHONY : src/glad.c.s
+
+src/lampe.o: src/lampe.cpp.o
+.PHONY : src/lampe.o
+
+# target to build an object file
+src/lampe.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/src/lampe.cpp.o
+.PHONY : src/lampe.cpp.o
+
+src/lampe.i: src/lampe.cpp.i
+.PHONY : src/lampe.i
+
+# target to preprocess a source file
+src/lampe.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/src/lampe.cpp.i
+.PHONY : src/lampe.cpp.i
+
+src/lampe.s: src/lampe.cpp.s
+.PHONY : src/lampe.s
+
+# target to generate assembly for a file
+src/lampe.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGL2.dir/build.make CMakeFiles/OpenGL2.dir/src/lampe.cpp.s
+.PHONY : src/lampe.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -399,12 +471,21 @@ help:
 	@echo "... external/imgui/imgui_widgets.o"
 	@echo "... external/imgui/imgui_widgets.i"
 	@echo "... external/imgui/imgui_widgets.s"
+	@echo "... src/CameraController.o"
+	@echo "... src/CameraController.i"
+	@echo "... src/CameraController.s"
 	@echo "... src/Shader.o"
 	@echo "... src/Shader.i"
 	@echo "... src/Shader.s"
+	@echo "... src/Sphere.o"
+	@echo "... src/Sphere.i"
+	@echo "... src/Sphere.s"
 	@echo "... src/glad.o"
 	@echo "... src/glad.i"
 	@echo "... src/glad.s"
+	@echo "... src/lampe.o"
+	@echo "... src/lampe.i"
+	@echo "... src/lampe.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

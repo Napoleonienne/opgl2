@@ -3,7 +3,8 @@
 #include <glad.h> // include glad BEFORE any GLFW includes that might follow
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
+#include <glad.h>
+#include <Shader.hpp>
 
 
 
@@ -11,6 +12,8 @@ class Shader {
 public:
     GLuint ID;
     Shader(const char* vertexPath, const char* fragmentPath);
+    Shader(const char* vertexPath, const char* fragmentPath, const char* computePath);
+
     void use() const;
 
     template<typename T>

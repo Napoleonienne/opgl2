@@ -17,19 +17,54 @@
 #include <glm/gtx/string_cast.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/ext/scalar_constants.hpp>
 #include <iostream>
+#include <random>
+#include <vector>
+#include <printf.h>
+#include <format>
+#include "CameraController.hpp"
+#include "Sphere.hpp"
+#include "lampe.hpp"
+#include <memory>
 
+static GLFWcursorposfun s_previousCursorPosCallback = nullptr;
 // Callback appelée lors du redimensionnement de la fenêtre
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 // Fonction pour gérer les entrées clavier
 void processInput(GLFWwindow *window);
 unsigned int chargerTexture(const char* chemin);
 void interface(float* rX,float* rY,float* rZ,glm::vec4 *couleur,float* fov);
-void SetupImGuiStyle();
+void SetupImGuiModernStyle();
+std::vector<glm::vec3> vecaleatoire(int n);
+float random_float(float min, float max);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 // Paramètres de la fenêtre
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
+
+glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, 1.0f);
+glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
+float deltaTime = 1.0f; // Time between current frame and last frame
+float lastFrame = 1.0f; // Time of last frame
+float yaw;
+float pitch;
+static double lastToggle = 0.0;
+float fov = 45.0f;
+
+
+float lastX = SCR_WIDTH/2, lastY = SCR_HEIGHT/2;
+
+CameraController camprincipale(cameraPos, cameraFront, cameraUp, yaw, pitch, deltaTime, SCR_WIDTH, SCR_HEIGHT);
+
+struct material
+{
+    /* data */
+};
+
 
 int main()
 {
@@ -42,6 +77,7 @@ int main()
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
+    glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, 1);
 
     // Création de la fenêtre
     GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Cube Texturé", NULL, NULL);
@@ -52,7 +88,7 @@ int main()
         return -1;
     }
     glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(window,framebuffer_size_callback);
 
     // Initialisation GLAD
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -61,109 +97,34 @@ int main()
         return -1;
     }
 
+    glfwSetScrollCallback(window, scroll_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
+   
     glEnable(GL_DEPTH_TEST);
 
     // Initialisation ImGui
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    SetupImGuiStyle();
+    SetupImGuiModernStyle();
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
 
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 450");
 
-    // Création et compilation du shader
-    Shader ourShader("../shader/triangle/tr.vs", "../shader/triangle/tr.fs");
 
-    // Données du cube (positions + texture)
-    float vertices[] = {
-    // positions           // texture coords
-    // Face avant
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+    glm::vec3 couleur_sphere(1.0f,0.5f,0.31f);
+    Sphere sphere(glm::vec3(0.0f,0.0f,0.0f),
+    5.6f,glm::vec4(couleur_sphere,1.0f),
+    Shader("../shader/sphere.vs","../shader/sphere.fs"));
 
-    // Face arri�re
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+ 
 
-    // Face gauche
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-
-    // Face droite
-     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-
-    // Face dessous
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-    // Face dessus
-    -0.5f,  0.5f, -0.5f,  0.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f
-};
-
-    unsigned int indices[] = {
-    0, 1, 2,  2, 3, 0,       // avant
-    4, 5, 6,  6, 7, 4,       // arrière
-    8, 9,10, 10,11, 8,       // gauche
-    12,13,14,14,15,12,       // droite
-    16,17,18,18,19,16,       // dessous
-    20,21,22,22,23,20        // dessus
-    };
-
-    glm::vec3 cubePositions[] = {
-  glm::vec3( 0.0f,  0.0f,  0.0f), 
-  glm::vec3( 2.0f,  5.0f, -15.0f), 
-  glm::vec3(-1.5f, -2.2f, -2.5f),  
-  glm::vec3(-3.8f, -2.0f, -12.3f),  
-  glm::vec3( 2.4f, -0.4f, -3.5f),  
-  glm::vec3(-1.7f,  3.0f, -7.5f),  
-  glm::vec3( 1.3f, -2.0f, -2.5f),  
-  glm::vec3( 1.5f,  2.0f, -2.5f), 
-  glm::vec3( 1.5f,  0.2f, -1.5f), 
-  glm::vec3(-1.3f,  1.0f, -1.5f)  
-};
-
-    unsigned int VBO, VAO, EBO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-
-    unsigned int tex = chargerTexture("../wall.jpg");
-
-    glBindVertexArray(VAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-    // Attributs
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
 
     // Matrices
-    glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f,0.0f,-4.0f));
-    glm::mat4 projection = glm::perspective(
-        glm::radians(45.0f), 
+    const glm::mat4 projection = glm::perspective(
+        glm::radians(80.0f), 
         (float)SCR_WIDTH / (float)SCR_HEIGHT, 
         0.1f, 
         10000.2f
@@ -174,76 +135,78 @@ int main()
     float rotZ = 0.0f;                             
     glm::vec4 couleur = glm::vec4(0.5f,0.6f,0.3f,1.0f);
     glm::vec4* c = &couleur;
-    float fov = 45.0f;
-    glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+    
     glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
     glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
     glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f); 
     glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
-                                        
-    // Boucle principale
-  
     
 
+
+    GLuint tex = chargerTexture("../wall.jpg");
+    // Boucle principale
+  
+  glm::mat4 sp(1.0f);
+  glm::mat4 modsoleil(1.0f);
+  modsoleil =
+   glm::rotate(
+    modsoleil,
+    glm::radians(45.0f),
+  glm::vec3(1.0f, 0.2f, 0.0f ) );
+  
+#include <memory>
+  sp = glm::translate(
+    sp,
+    glm::vec3(0.0f, 10.0f, 0.0f ) );
+
+    std::vector<glm::vec3> POS = vecaleatoire(1000);
+    lamp soleil(glm::vec3(1.5,1.0,0.5),6,Shader("../shader/soleil.vs","../shader/soleil.fs"));
+    glm::vec3 lightColor(0.33f, 0.42f, 0.18f);
+    soleil.shader.set("lightColor",lightColor);
     while (!glfwWindowShouldClose(window))
     {
         processInput(window);
-
         glClearColor(0.3f, 0.0f, 0.5f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-        
+        ImGui::ShowDemoWindow();
+        glm::mat4 view;
+        view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp); 
+
+        sphere.shade.set("light",glm::vec3(0.33f, 0.42f, 0.18f));
+
+
+        soleil.dessiner(projection, modsoleil , view);
+
         float utime=glfwGetTime();
-        interface(&rotX,&rotY,&rotZ,c,&fov);
-        // Rotation
-        glm::mat4 model = glm::mat4(1.0f);
-        model = glm::rotate(model, (rotX), glm::vec3(1.0f, 0.0f, 0.0f));
-        model = glm::rotate(model, (rotY), glm::vec3(0.0f, 1.0f, 0.0f));
-        model = glm::rotate(model, (rotZ), glm::vec3(0.0f, 0.0f, 1.0f));
-        glm::mat4 projection = glm::perspective(
-        (fov), 
-        (float)SCR_WIDTH / (float)SCR_HEIGHT, 
-        0.1f, 
-        100.2f
-                                        );
-        ourShader.use();
-        ourShader.set("couleur",couleur);
-       
-        ourShader.set("view", view);
-        ourShader.set("projection", projection);
-        ourShader.set("utime",utime);
         
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, tex);
-        std::string texName = "ourTexture";
-        ourShader.uniformetex(texName, 0);
-        glBindVertexArray(VAO);
-        for (int i = 0; i <sizeof( cubePositions)/sizeof(glm::vec3); i++)
+                     
+
+        for (auto pos :POS)
         {
-            /* code */
-
-            model = glm::translate(model,cubePositions[i]);
-            float angle = 20.0f * i; 
-            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-            ourShader.set("model", model);
-            glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+            sp = glm::translate(glm::mat4(1.0f),pos) ;
+            sp = glm::rotate(sp,sin(45.0f)*utime,glm::vec3(0.0,0.7,0.0));
+            sphere.dessiner(projection,sp,view);
         }
-        
+         
 
+                                             
+        
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         glfwSwapBuffers(window);
+
+        float currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
         glfwPollEvents();
     }
-
+    
     // Cleanup
-    glDeleteVertexArrays(1,&VAO);
-    glDeleteBuffers(1,&VBO);
-    glDeleteBuffers(1,&EBO);
-
+    soleil.detruire();
+    sphere.destroy();
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
@@ -254,16 +217,55 @@ int main()
 
     
 }
+bool firstMouse = true;
 
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    camprincipale.mouseCallback(xpos,ypos);
+
+}
+
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    camprincipale.scrollCallback(yoffset, fov);
+}
+
+
+
+bool qWasPressed = false; 
+bool souris = true;
 void processInput(GLFWwindow *window)
 {
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-    else if (glfwGetKey(window, GLFW_KEY_EQUAL) == GLFW_PRESS)
-    {
-        /* code */
-    }
+
+    bool qPressed = (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS);
     
+    double now = glfwGetTime();
+
+    camprincipale.processInput(window);
+
+
+    
+    if (qPressed && qWasPressed && (now - lastToggle) >1.0f )
+    {
+        static double lastToggle = now;
+        if (souris == true){
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        }else
+        {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        }
+        souris = !souris;
+        
+        
+    }
+
+
+
+    qWasPressed = qPressed;
+      
+   
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -305,98 +307,67 @@ void interface(float* rX,float* rY,float* rZ,glm::vec4 *couleur, float* fov)
         ImGui::SliderAngle("rotation x",rX,-180.0f,180.0f);
         ImGui::SliderAngle("rotation y",rY,-180.0f,180.0f);
         ImGui::SliderAngle("rotation z",rZ,-180.0f,180.0f);
-        ImGui::SliderAngle("fov",fov,-180.0f,180.0f);
+        ImGui::SliderAngle("fov",fov,0.0f,180.0f);
         ImGui::ColorEdit4("couleeur",glm::value_ptr(*couleur));
+        ImGui::TextColored(ImVec4(0.3f, 0.8f, 1.0f, 1.0f),
+                   "CameraPos: (%.2f, %.2f, %.2f)",
+                   cameraPos.x, cameraPos.y, cameraPos.z);
 
         ImGui::End();
 }
 
-void SetupImGuiStyle()
+
+void SetupImGuiModernStyle()
 {
-	// Comfy style by Giuseppe from ImThemes
-	ImGuiStyle& style = ImGui::GetStyle();
-	
-	style.Alpha = 1.0f;
-	style.DisabledAlpha = 0.1f;
-	style.WindowPadding = ImVec2(8.0f, 8.0f);
-	style.WindowRounding = 10.0f;
-	style.WindowBorderSize = 0.0f;
-	style.WindowMinSize = ImVec2(30.0f, 30.0f);
-	style.WindowTitleAlign = ImVec2(0.5f, 0.5f);
-	style.WindowMenuButtonPosition = ImGuiDir_Right;
-	style.ChildRounding = 5.0f;
-	style.ChildBorderSize = 1.0f;
-	style.PopupRounding = 10.0f;
-	style.PopupBorderSize = 0.0f;
-	style.FramePadding = ImVec2(5.0f, 3.5f);
-	style.FrameRounding = 5.0f;
-	style.FrameBorderSize = 0.0f;
-	style.ItemSpacing = ImVec2(5.0f, 4.0f);
-	style.ItemInnerSpacing = ImVec2(5.0f, 5.0f);
-	style.CellPadding = ImVec2(4.0f, 2.0f);
-	style.IndentSpacing = 5.0f;
-	style.ColumnsMinSpacing = 5.0f;
-	style.ScrollbarSize = 15.0f;
-	style.ScrollbarRounding = 9.0f;
-	style.GrabMinSize = 15.0f;
-	style.GrabRounding = 5.0f;
-	style.TabRounding = 5.0f;
-	style.TabBorderSize = 0.0f;
-	style.ColorButtonPosition = ImGuiDir_Right;
-	style.ButtonTextAlign = ImVec2(0.5f, 0.5f);
-	style.SelectableTextAlign = ImVec2(0.0f, 0.0f);
-	
-	style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
-	style.Colors[ImGuiCol_TextDisabled] = ImVec4(1.0f, 1.0f, 1.0f, 0.360515f);
-	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.09803922f, 0.09803922f, 0.09803922f, 1.0f);
-	style.Colors[ImGuiCol_ChildBg] = ImVec4(1.0f, 0.0f, 0.0f, 0.0f);
-	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.09803922f, 0.09803922f, 0.09803922f, 1.0f);
-	style.Colors[ImGuiCol_Border] = ImVec4(0.42352942f, 0.38039216f, 0.57254905f, 0.5493562f);
-	style.Colors[ImGuiCol_BorderShadow] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
-	style.Colors[ImGuiCol_FrameBg] = ImVec4(0.15686275f, 0.15686275f, 0.15686275f, 1.0f);
-	style.Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.38039216f, 0.42352942f, 0.57254905f, 0.54901963f);
-	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.61960787f, 0.5764706f, 0.76862746f, 0.54901963f);
-	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.09803922f, 0.09803922f, 0.09803922f, 1.0f);
-	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.09803922f, 0.09803922f, 0.09803922f, 1.0f);
-	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.25882354f, 0.25882354f, 0.25882354f, 0.0f);
-	style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
-	style.Colors[ImGuiCol_ScrollbarBg] = ImVec4(0.15686275f, 0.15686275f, 0.15686275f, 0.0f);
-	style.Colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.15686275f, 0.15686275f, 0.15686275f, 1.0f);
-	style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.23529412f, 0.23529412f, 0.23529412f, 1.0f);
-	style.Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.29411766f, 0.29411766f, 0.29411766f, 1.0f);
-	style.Colors[ImGuiCol_CheckMark] = ImVec4(0.29411766f, 0.29411766f, 0.29411766f, 1.0f);
-	style.Colors[ImGuiCol_SliderGrab] = ImVec4(0.61960787f, 0.5764706f, 0.76862746f, 0.54901963f);
-	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.8156863f, 0.77254903f, 0.9647059f, 0.54901963f);
-	style.Colors[ImGuiCol_Button] = ImVec4(0.61960787f, 0.5764706f, 0.76862746f, 0.54901963f);
-	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.7372549f, 0.69411767f, 0.8862745f, 0.54901963f);
-	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.8156863f, 0.77254903f, 0.9647059f, 0.54901963f);
-	style.Colors[ImGuiCol_Header] = ImVec4(0.61960787f, 0.5764706f, 0.76862746f, 0.54901963f);
-	style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.7372549f, 0.69411767f, 0.8862745f, 0.54901963f);
-	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.8156863f, 0.77254903f, 0.9647059f, 0.54901963f);
-	style.Colors[ImGuiCol_Separator] = ImVec4(0.61960787f, 0.5764706f, 0.76862746f, 0.54901963f);
-	style.Colors[ImGuiCol_SeparatorHovered] = ImVec4(0.7372549f, 0.69411767f, 0.8862745f, 0.54901963f);
-	style.Colors[ImGuiCol_SeparatorActive] = ImVec4(0.8156863f, 0.77254903f, 0.9647059f, 0.54901963f);
-	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.61960787f, 0.5764706f, 0.76862746f, 0.54901963f);
-	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.7372549f, 0.69411767f, 0.8862745f, 0.54901963f);
-	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.8156863f, 0.77254903f, 0.9647059f, 0.54901963f);
-	style.Colors[ImGuiCol_Tab] = ImVec4(0.61960787f, 0.5764706f, 0.76862746f, 0.54901963f);
-	style.Colors[ImGuiCol_TabHovered] = ImVec4(0.7372549f, 0.69411767f, 0.8862745f, 0.54901963f);
-	style.Colors[ImGuiCol_TabActive] = ImVec4(0.8156863f, 0.77254903f, 0.9647059f, 0.54901963f);
-	style.Colors[ImGuiCol_TabUnfocused] = ImVec4(0.0f, 0.4509804f, 1.0f, 0.0f);
-	style.Colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.13333334f, 0.25882354f, 0.42352942f, 0.0f);
-	style.Colors[ImGuiCol_PlotLines] = ImVec4(0.29411766f, 0.29411766f, 0.29411766f, 1.0f);
-	style.Colors[ImGuiCol_PlotLinesHovered] = ImVec4(0.7372549f, 0.69411767f, 0.8862745f, 0.54901963f);
-	style.Colors[ImGuiCol_PlotHistogram] = ImVec4(0.61960787f, 0.5764706f, 0.76862746f, 0.54901963f);
-	style.Colors[ImGuiCol_PlotHistogramHovered] = ImVec4(0.7372549f, 0.69411767f, 0.8862745f, 0.54901963f);
-	style.Colors[ImGuiCol_TableHeaderBg] = ImVec4(0.1882353f, 0.1882353f, 0.2f, 1.0f);
-	style.Colors[ImGuiCol_TableBorderStrong] = ImVec4(0.42352942f, 0.38039216f, 0.57254905f, 0.54901963f);
-	style.Colors[ImGuiCol_TableBorderLight] = ImVec4(0.42352942f, 0.38039216f, 0.57254905f, 0.2918455f);
-	style.Colors[ImGuiCol_TableRowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
-	style.Colors[ImGuiCol_TableRowBgAlt] = ImVec4(1.0f, 1.0f, 1.0f, 0.03433478f);
-	style.Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.7372549f, 0.69411767f, 0.8862745f, 0.54901963f);
-	style.Colors[ImGuiCol_DragDropTarget] = ImVec4(1.0f, 1.0f, 0.0f, 0.9f);
-	style.Colors[ImGuiCol_NavHighlight] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
-	style.Colors[ImGuiCol_NavWindowingHighlight] = ImVec4(1.0f, 1.0f, 1.0f, 0.7f);
-	style.Colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.8f, 0.8f, 0.8f, 0.2f);
-	style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.8f, 0.8f, 0.8f, 0.35f);
+    ImGuiStyle& style = ImGui::GetStyle();
+
+    // Param�tres de base
+    style.WindowRounding = 10.0f;   // bords arrondis
+    style.FrameRounding = 6.0f;     // boutons et sliders arrondis
+    style.WindowPadding = ImVec2(10, 10);
+    style.FramePadding = ImVec2(6, 4);
+    style.ItemSpacing = ImVec2(8, 6);
+    style.ItemInnerSpacing = ImVec2(6, 4);
+
+    // Couleurs semi-transparentes (alpha < 1.0)
+    ImVec4 transparentBg = ImVec4(0.12f, 0.12f, 0.14f, 0.6f); // fen�tre
+    ImVec4 accentColor    = ImVec4(0.35f, 0.65f, 0.95f, 0.8f); // boutons, sliders
+    ImVec4 hoverColor     = ImVec4(0.45f, 0.75f, 1.0f, 0.8f);
+    ImVec4 activeColor    = ImVec4(0.25f, 0.55f, 0.85f, 0.9f);
+    ImVec4 textColor      = ImVec4(0.95f, 0.95f, 0.95f, 1.0f);
+
+    style.Colors[ImGuiCol_WindowBg]       = transparentBg;
+    style.Colors[ImGuiCol_FrameBg]        = ImVec4(0.18f, 0.18f, 0.2f, 0.5f);
+    style.Colors[ImGuiCol_FrameBgHovered] = hoverColor;
+    style.Colors[ImGuiCol_FrameBgActive]  = activeColor;
+    style.Colors[ImGuiCol_TitleBg]        = transparentBg;
+    style.Colors[ImGuiCol_TitleBgActive]  = accentColor;
+    style.Colors[ImGuiCol_Button]         = accentColor;
+    style.Colors[ImGuiCol_ButtonHovered]  = hoverColor;
+    style.Colors[ImGuiCol_ButtonActive]   = activeColor;
+    style.Colors[ImGuiCol_Header]         = accentColor;
+    style.Colors[ImGuiCol_HeaderHovered]  = hoverColor;
+    style.Colors[ImGuiCol_HeaderActive]   = activeColor;
+    style.Colors[ImGuiCol_SliderGrab]     = accentColor;
+    style.Colors[ImGuiCol_SliderGrabActive] = activeColor;
 }
+
+
+std::vector<glm::vec3> vecaleatoire(int n){
+    std::vector<glm::vec3> pos;
+    for (int i = 0; i < n; i++)
+    {
+        pos.push_back(glm::vec3(random_float(-1000,1000),random_float(-1000,1000),random_float(-1000,1000)));
+
+    };
+    return pos;
+}
+
+float random_float(float min, float max) {
+    static std::random_device rd;  // Générateur de graine aléatoire
+    static std::mt19937 gen(rd()); // Moteur de génération (Mersenne Twister)
+    std::uniform_real_distribution<float> dis(min, max); // Distribution uniforme
+    return dis(gen);
+}
+
+
