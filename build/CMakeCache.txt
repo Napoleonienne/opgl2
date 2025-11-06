@@ -280,6 +280,24 @@ PKG_CONFIG_ARGN:STRING=
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
+//Export low level pdb's
+PX_EXPORT_LOWLEVEL_PDB:BOOL=OFF
+
+//Generate static libraries
+PX_GENERATE_STATIC_LIBRARIES:BOOL=OFF
+
+//Disable SIMD math
+PX_SCALAR_MATH:BOOL=OFF
+
+//Value Computed by CMake
+PhysX_BINARY_DIR:STATIC=/home/guy/Bureau/opgl2/build/PhysX_build
+
+//Value Computed by CMake
+PhysX_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+PhysX_SOURCE_DIR:STATIC=/home/guy/Bureau/opgl2/external/Phys5X/physx/source/compiler/cmake
+
 //The directory containing a CMake configuration file for glm.
 glm_DIR:PATH=/usr/share/cmake/glm
 
@@ -291,6 +309,12 @@ pkgcfg_lib_GLFW_glfw:FILEPATH=/usr/lib/x86_64-linux-gnu/libglfw.so
 # INTERNAL cache entries
 ########################
 
+//CMakeModules name
+CMAKEMODULES_NAME:INTERNAL=
+//Path to CMakeModules
+CMAKEMODULES_PATH:INTERNAL=
+//CMakeModules version from generation batch
+CMAKEMODULES_VERSION:INTERNAL=
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -391,7 +415,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -499,6 +523,28 @@ OPENGL_glx_LIBRARY-ADVANCED:INTERNAL=1
 OPENGL_opengl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_xmesa_INCLUDE_DIR
 OPENGL_xmesa_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//PhysX CXX
+PHYSX_CXX_FLAGS:INTERNAL= -std=c++11 -fno-rtti -fno-exceptions -ffunction-sections -fdata-sections -fno-strict-aliasing -Wall -Werror -Wno-invalid-offsetof -Wno-uninitialized
+//PhysX Checked CXX Flags
+PHYSX_CXX_FLAGS_CHECKED:INTERNAL=-O3 -g3 -gdwarf-2
+//PhysX Debug CXX Flags
+PHYSX_CXX_FLAGS_DEBUG:INTERNAL=-O0 -g3 -gdwarf-2
+//PhysX Profile CXX Flags
+PHYSX_CXX_FLAGS_PROFILE:INTERNAL=-O3
+//PhysX Release CXX Flags
+PHYSX_CXX_FLAGS_RELEASE:INTERNAL=-O3
+//Checked PhysX preprocessor definitions
+PHYSX_LINUX_CHECKED_COMPILE_DEFS:INTERNAL=NDEBUG;PX_CHECKED=1;PX_NVTX=0;PX_SUPPORT_PVD=1
+//Base PhysX preprocessor definitions
+PHYSX_LINUX_COMPILE_DEFS:INTERNAL=;
+//Debug PhysX preprocessor definitions
+PHYSX_LINUX_DEBUG_COMPILE_DEFS:INTERNAL=NDEBUG;PX_DEBUG=1;PX_CHECKED=1;PX_NVTX=0;PX_SUPPORT_PVD=1
+//Profile PhysX preprocessor definitions
+PHYSX_LINUX_PROFILE_COMPILE_DEFS:INTERNAL=NDEBUG;PX_PROFILE=1;PX_NVTX=0;PX_SUPPORT_PVD=1
+//Release PhysX preprocessor definitions
+PHYSX_LINUX_RELEASE_COMPILE_DEFS:INTERNAL=NDEBUG;PX_SUPPORT_PVD=0
+//Root of the PhysX source tree
+PHYSX_ROOT_DIR:INTERNAL=
 //ADVANCED property for variable: PKG_CONFIG_ARGN
 PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE

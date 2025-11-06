@@ -24,10 +24,8 @@ set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/external/imgui)
 file(GLOB_RECURSE PROJECT_SOURCES
     "${CMAKE_SOURCE_DIR}/src/*.cpp"
     "${CMAKE_SOURCE_DIR}/src/*.c"
-
 )
-message(STATUS "Sources trouv�es : ${PROJECT_SOURCES}")
-
+message(STATUS "Sources trouvées : ${PROJECT_SOURCES}")
 
 # Sources ImGui
 set(IMGUI_SOURCES
@@ -39,7 +37,6 @@ set(IMGUI_SOURCES
     ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
     ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 )
-
 
 # Création de l’exécutable
 add_executable(${PROJECT_NAME}
@@ -71,3 +68,25 @@ elseif(APPLE)
 else() # Linux
     target_link_libraries(${PROJECT_NAME} PRIVATE OpenGL::GL glfw glm::glm X11 Xrandr Xi Xxf86vm Xcursor pthread dl m)
 endif()
+
+# ------------------------------
+# Integration PhysX
+# ------------------------------
+# Définir le chemin vers PhysX
+set(PHYSX_ROOT_DIR ${CMAKE_SOURCE_DIR}/external/Phys5X/physx)
+
+# Ajouter PhysX comme sous-répertoire
+add_subdirectory(${PHYSX_ROOT_DIR}/source/compiler/cmake PhysX_build)
+
+# Inclure les headers PhysX
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ${PHYSX_ROOT_DIR}/include
+)
+
+# Lier les bibliothèques PhysX
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    PhysX::PhysX
+    PhysX::PhysXCommon
+    PhysX::PhysXFoundation
+    PhysX::PhysXExtensions
+)

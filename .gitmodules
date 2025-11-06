@@ -1,6 +1,3 @@
 [submodule "external/imgui"]
 	path = external/imgui
 	url = https://github.com/ocornut/imgui.git
-[submodule "external/Phys5X"]
-	path = external/Phys5X
-	url = https://github.com/NVIDIAGameWorks/PhysX.git
