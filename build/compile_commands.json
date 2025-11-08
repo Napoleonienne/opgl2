@@ -1,79 +1,79 @@
 [
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/src/CameraController.cpp.o -c /home/guy/Bureau/opgl2/src/CameraController.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/src/CameraController.cpp.o -c /home/guy/Bureau/opgl2/src/CameraController.cpp",
   "file": "/home/guy/Bureau/opgl2/src/CameraController.cpp",
   "output": "CMakeFiles/OpenGL2.dir/src/CameraController.cpp.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/src/Shader.cpp.o -c /home/guy/Bureau/opgl2/src/Shader.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/src/Shader.cpp.o -c /home/guy/Bureau/opgl2/src/Shader.cpp",
   "file": "/home/guy/Bureau/opgl2/src/Shader.cpp",
   "output": "CMakeFiles/OpenGL2.dir/src/Shader.cpp.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/src/Sphere.cpp.o -c /home/guy/Bureau/opgl2/src/Sphere.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/src/Sphere.cpp.o -c /home/guy/Bureau/opgl2/src/Sphere.cpp",
   "file": "/home/guy/Bureau/opgl2/src/Sphere.cpp",
   "output": "CMakeFiles/OpenGL2.dir/src/Sphere.cpp.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/gcc-14 -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -o CMakeFiles/OpenGL2.dir/src/glad.c.o -c /home/guy/Bureau/opgl2/src/glad.c",
+  "command": "/usr/bin/gcc-14 -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include -g -o CMakeFiles/OpenGL2.dir/src/glad.c.o -c /home/guy/Bureau/opgl2/src/glad.c",
   "file": "/home/guy/Bureau/opgl2/src/glad.c",
   "output": "CMakeFiles/OpenGL2.dir/src/glad.c.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/src/lampe.cpp.o -c /home/guy/Bureau/opgl2/src/lampe.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/src/lampe.cpp.o -c /home/guy/Bureau/opgl2/src/lampe.cpp",
   "file": "/home/guy/Bureau/opgl2/src/lampe.cpp",
   "output": "CMakeFiles/OpenGL2.dir/src/lampe.cpp.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/src/main.cpp.o -c /home/guy/Bureau/opgl2/src/main.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/src/main.cpp.o -c /home/guy/Bureau/opgl2/src/main.cpp",
   "file": "/home/guy/Bureau/opgl2/src/main.cpp",
   "output": "CMakeFiles/OpenGL2.dir/src/main.cpp.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui.cpp",
   "file": "/home/guy/Bureau/opgl2/external/imgui/imgui.cpp",
   "output": "CMakeFiles/OpenGL2.dir/external/imgui/imgui.cpp.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_draw.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_draw.cpp",
   "file": "/home/guy/Bureau/opgl2/external/imgui/imgui_draw.cpp",
   "output": "CMakeFiles/OpenGL2.dir/external/imgui/imgui_draw.cpp.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_tables.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_tables.cpp",
   "file": "/home/guy/Bureau/opgl2/external/imgui/imgui_tables.cpp",
   "output": "CMakeFiles/OpenGL2.dir/external/imgui/imgui_tables.cpp.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_widgets.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_widgets.cpp",
   "file": "/home/guy/Bureau/opgl2/external/imgui/imgui_widgets.cpp",
   "output": "CMakeFiles/OpenGL2.dir/external/imgui/imgui_widgets.cpp.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_demo.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/imgui_demo.cpp",
   "file": "/home/guy/Bureau/opgl2/external/imgui/imgui_demo.cpp",
   "output": "CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_glfw.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_glfw.cpp",
   "file": "/home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_glfw.cpp",
   "output": "CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o"
 },
 {
   "directory": "/home/guy/Bureau/opgl2/build",
-  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_opengl3.cpp",
+  "command": "/usr/bin/c++ -DIMGUI_IMPL_OPENGL_LOADER_GLAD -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include  -O3 -march=native -g -std=gnu++23 -o CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o -c /home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_opengl3.cpp",
   "file": "/home/guy/Bureau/opgl2/external/imgui/backends/imgui_impl_opengl3.cpp",
   "output": "CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o"
 }

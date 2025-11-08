@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_DEFINES = -DIMGUI_IMPL_OPENGL_LOADER_GLAD
 
-C_INCLUDES = -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends
+C_INCLUDES = -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include
 
 C_FLAGS = -g
 
 CXX_DEFINES = -DIMGUI_IMPL_OPENGL_LOADER_GLAD
 
-CXX_INCLUDES = -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends
+CXX_INCLUDES = -I/home/guy/Bureau/opgl2/dependance -I/home/guy/Bureau/opgl2/externe -I/home/guy/Bureau/opgl2/external/imgui -I/home/guy/Bureau/opgl2/external/imgui/backends -I/home/guy/Bureau/opgl2/external/physx/physx/include -I/home/guy/Bureau/opgl2/external/physx/pxshared/include
 
-CXX_FLAGS = -g -std=gnu++23
+CXX_FLAGS =  -O3 -march=native -g -std=gnu++23
 

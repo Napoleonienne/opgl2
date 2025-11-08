@@ -284,6 +284,14 @@ OpenGL2: CMakeFiles/OpenGL2.dir/external/imgui/imgui_demo.cpp.o
 OpenGL2: CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_glfw.cpp.o
 OpenGL2: CMakeFiles/OpenGL2.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o
 OpenGL2: CMakeFiles/OpenGL2.dir/build.make
+OpenGL2: /home/guy/Bureau/opgl2/external/physx/physx/bin/linux.x86_64/debug/libPhysX_static_64.a
+OpenGL2: /home/guy/Bureau/opgl2/external/physx/physx/bin/linux.x86_64/debug/libPhysXCommon_static_64.a
+OpenGL2: /home/guy/Bureau/opgl2/external/physx/physx/bin/linux.x86_64/debug/libPhysXFoundation_static_64.a
+OpenGL2: /home/guy/Bureau/opgl2/external/physx/physx/bin/linux.x86_64/debug/libPhysXCooking_static_64.a
+OpenGL2: /home/guy/Bureau/opgl2/external/physx/physx/bin/linux.x86_64/debug/libPhysXExtensions_static_64.a
+OpenGL2: /home/guy/Bureau/opgl2/external/physx/physx/bin/linux.x86_64/debug/libPhysXPvdSDK_static_64.a
+OpenGL2: /home/guy/Bureau/opgl2/external/physx/physx/bin/linux.x86_64/debug/libPhysXVehicle_static_64.a
+OpenGL2: /home/guy/Bureau/opgl2/external/physx/physx/bin/linux.x86_64/debug/libPhysXCharacterKinematic_static_
 OpenGL2: /usr/lib/x86_64-linux-gnu/libGLX.so
 OpenGL2: /usr/lib/x86_64-linux-gnu/libOpenGL.so
 OpenGL2: CMakeFiles/OpenGL2.dir/link.txt
