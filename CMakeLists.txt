@@ -69,24 +69,4 @@ else() # Linux
     target_link_libraries(${PROJECT_NAME} PRIVATE OpenGL::GL glfw glm::glm X11 Xrandr Xi Xxf86vm Xcursor pthread dl m)
 endif()
 
-# ------------------------------
-# Integration PhysX
-# ------------------------------
-# Définir le chemin vers PhysX
-set(PHYSX_ROOT_DIR ${CMAKE_SOURCE_DIR}/external/Phys5X/physx)
 
-# Ajouter PhysX comme sous-répertoire
-add_subdirectory(${PHYSX_ROOT_DIR}/source/compiler/cmake PhysX_build)
-
-# Inclure les headers PhysX
-target_include_directories(${PROJECT_NAME} PRIVATE
-    ${PHYSX_ROOT_DIR}/include
-)
-
-# Lier les bibliothèques PhysX
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    PhysX::PhysX
-    PhysX::PhysXCommon
-    PhysX::PhysXFoundation
-    PhysX::PhysXExtensions
-)

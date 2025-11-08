@@ -2,6 +2,42 @@
 	"entries" : 
 	[
 		{
+			"name" : "CMAKEMODULES_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "CMakeModules name"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKEMODULES_PATH",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to CMakeModules"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKEMODULES_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "CMakeModules version from generation batch"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -1803,7 +1839,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "OPENGL_glu_LIBRARY-NOTFOUND"
+			"value" : "/usr/lib/x86_64-linux-gnu/libGLU.so"
 		},
 		{
 			"name" : "OPENGL_glx_LIBRARY",
@@ -1890,6 +1926,138 @@
 			"value" : "/home/guy/Bureau/opgl2"
 		},
 		{
+			"name" : "PHYSX_CXX_FLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "PhysX CXX"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : " -std=c++11 -fno-rtti -fno-exceptions -ffunction-sections -fdata-sections -fno-strict-aliasing -Wall -Werror -Wno-invalid-offsetof -Wno-uninitialized"
+		},
+		{
+			"name" : "PHYSX_CXX_FLAGS_CHECKED",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "PhysX Checked CXX Flags"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-O3 -g3 -gdwarf-2"
+		},
+		{
+			"name" : "PHYSX_CXX_FLAGS_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "PhysX Debug CXX Flags"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-O0 -g3 -gdwarf-2"
+		},
+		{
+			"name" : "PHYSX_CXX_FLAGS_PROFILE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "PhysX Profile CXX Flags"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-O3"
+		},
+		{
+			"name" : "PHYSX_CXX_FLAGS_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "PhysX Release CXX Flags"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-O3"
+		},
+		{
+			"name" : "PHYSX_LINUX_CHECKED_COMPILE_DEFS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Checked PhysX preprocessor definitions"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "NDEBUG;PX_CHECKED=1;PX_NVTX=0;PX_SUPPORT_PVD=1"
+		},
+		{
+			"name" : "PHYSX_LINUX_COMPILE_DEFS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Base PhysX preprocessor definitions"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ";"
+		},
+		{
+			"name" : "PHYSX_LINUX_DEBUG_COMPILE_DEFS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Debug PhysX preprocessor definitions"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "NDEBUG;PX_DEBUG=1;PX_CHECKED=1;PX_NVTX=0;PX_SUPPORT_PVD=1"
+		},
+		{
+			"name" : "PHYSX_LINUX_PROFILE_COMPILE_DEFS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Profile PhysX preprocessor definitions"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "NDEBUG;PX_PROFILE=1;PX_NVTX=0;PX_SUPPORT_PVD=1"
+		},
+		{
+			"name" : "PHYSX_LINUX_RELEASE_COMPILE_DEFS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Release PhysX preprocessor definitions"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "NDEBUG;PX_SUPPORT_PVD=0"
+		},
+		{
+			"name" : "PHYSX_ROOT_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Root of the PhysX source tree"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
 			"name" : "PKG_CONFIG_ARGN",
 			"properties" : 
 			[
@@ -1920,6 +2088,78 @@
 			],
 			"type" : "FILEPATH",
 			"value" : "/usr/bin/pkg-config"
+		},
+		{
+			"name" : "PX_EXPORT_LOWLEVEL_PDB",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Export low level pdb's"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "PX_GENERATE_STATIC_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Generate static libraries"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "PX_SCALAR_MATH",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Disable SIMD math"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "PhysX_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/guy/Bureau/opgl2/build/PhysX_build"
+		},
+		{
+			"name" : "PhysX_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "OFF"
+		},
+		{
+			"name" : "PhysX_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/guy/Bureau/opgl2/external/Phys5X/physx/source/compiler/cmake"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
