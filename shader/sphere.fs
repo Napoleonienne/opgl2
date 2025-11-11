@@ -1,11 +1,53 @@
-#version 450 core
+#version 330 core
 
 out vec4 FragColor;
-uniform vec4 couleur;
-uniform vec3 light;
-vec4 b =vec4(light,1.0);
+
+uniform vec3 couleur;      // Couleur de l’objet
+uniform vec3 camerapos;    // Position de la caméra
+
+in vec3 normale;           // Normale interpolée du fragment
+in vec3 FragPos;           // Position du fragment dans le monde
+
+struct Material {
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+    float shininess;
+};
+uniform Material material;
+
+struct Light {
+vec3 couleur;
+ vec3 position;
+ vec3 ambient;
+ vec3 diffuse;
+ vec3 specular;
+};
+uniform Light light;
+
+
 void main()
 {
-    //FragColor = vec4(0.5,0.6,0.1, 1.0); 
-    FragColor = couleur*b;
+    // paramètres
+    float ambientStrength = 0.1;
+    float specularStrength = 0.5;
+
+    // Composante ambiante
+    vec3 ambient =  material.ambient * light.couleur;
+
+    // Composante diffuse
+    vec3 norm = normalize(normale);
+    vec3 lightDir = normalize(light.position - FragPos);
+    float diff = max(dot(norm, lightDir), 0.0);
+    vec3 diffuse = (material.diffuse*diff) * light.couleur;
+
+    // Composante spéculaire
+    vec3 viewDir = normalize(camerapos - FragPos);
+    vec3 reflectDir = reflect(-lightDir, norm);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0),  material.shininess);
+    vec3 specular = material.specular * spec * light.couleur;
+
+    // Résultat final
+    vec3 result = (ambient + diffuse + specular) * couleur;
+    FragColor = vec4(result, 1.0);
 }

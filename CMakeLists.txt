@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 project(OpenGL2 VERSION 0.1 LANGUAGES CXX C)
 
-# Utiliser C++23
+# Optimisation et vectorisation auto
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native")
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -18,20 +18,17 @@ if(NOT GLFW_FOUND)
     message(FATAL_ERROR "GLFW not found. Installez libglfw3-dev et réessayez.")
 endif()
 
-# Chemin ImGui
+# Chemins
 set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/external/imgui)
-
 set(PHYSX_DIR ${CMAKE_SOURCE_DIR}/external/physx)
-set(PHYSX_SOURCE ${CMAKE_SOURCE_DIR}/external/physx/physx/bin/linux.x86_64/debug)
+set(PHYSX_SOURCE ${PHYSX_DIR}/physx/bin/linux.x86_64/debug)
+
 # Sources du projet
 file(GLOB_RECURSE PROJECT_SOURCES
     "${CMAKE_SOURCE_DIR}/src/*.cpp"
     "${CMAKE_SOURCE_DIR}/src/*.c"
 )
 message(STATUS "Sources trouvées : ${PROJECT_SOURCES}")
-
-
-
 
 # Sources ImGui
 set(IMGUI_SOURCES
@@ -62,30 +59,14 @@ target_include_directories(${PROJECT_NAME}
         ${GLFW_INCLUDE_DIRS}
         ${PHYSX_DIR}/physx/include
         ${PHYSX_DIR}/pxshared/include
-
 )
 
 # Liens des bibliothèques
 if(WIN32)
-    target_link_libraries(${PROJECT_NAME} PRIVATE OpenGL::GL glfw glm::glm)
-elseif(APPLE)
-    find_library(COCOA Cocoa)
-    find_library(IOKIT IOKit)
-    find_library(COREVIDEO CoreVideo)
-    target_link_libraries(${PROJECT_NAME} PRIVATE OpenGL::GL glfw glm::glm ${COCOA} ${IOKIT} ${COREVIDEO})
-else() # Linux
     target_link_libraries(${PROJECT_NAME} PRIVATE 
     OpenGL::GL 
     glfw 
-    glm::glm 
-    X11 
-    Xrandr 
-    Xi 
-    Xxf86vm 
-    Xcursor 
-    pthread 
-    dl 
-    m
+    glm::glm
     
     ${PHYSX_SOURCE}/libPhysX_static_64.a
         ${PHYSX_SOURCE}/libPhysXCommon_static_64.a
@@ -93,10 +74,48 @@ else() # Linux
         ${PHYSX_SOURCE}/libPhysXCooking_static_64.a
         ${PHYSX_SOURCE}/libPhysXExtensions_static_64.a
         ${PHYSX_SOURCE}/libPhysXPvdSDK_static_64.a
-        ${PHYSX_SOURCE}/libPhysXVehicle_static_64.a
-        ${PHYSX_SOURCE}/libPhysXCharacterKinematic_static_
+        ${PHYSX_SOURCE}/libPhysXCharacterKinematic_static_64.a
+    )
+elseif(APPLE)
+    find_library(COCOA Cocoa)
+    find_library(IOKIT IOKit)
+    find_library(COREVIDEO CoreVideo)
+    target_link_libraries(${PROJECT_NAME} PRIVATE 
+    OpenGL::GL 
+    glfw 
+    glm::glm 
+    ${COCOA} 
+    ${IOKIT} 
+    ${COREVIDEO}
+    
+    ${PHYSX_SOURCE}/libPhysX_static_64.a
+        ${PHYSX_SOURCE}/libPhysXCommon_static_64.a
+        ${PHYSX_SOURCE}/libPhysXFoundation_static_64.a
+        ${PHYSX_SOURCE}/libPhysXCooking_static_64.a
+        ${PHYSX_SOURCE}/libPhysXExtensions_static_64.a
+        ${PHYSX_SOURCE}/libPhysXPvdSDK_static_64.a
+        ${PHYSX_SOURCE}/libPhysXCharacterKinematic_static_64.a
+    )
+else() # Linux
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        OpenGL::GL
+        glfw
+        glm::glm
+        X11
+        Xrandr
+        Xi
+        Xxf86vm
+        Xcursor
+        pthread
+        dl
+        m
 
+        ${PHYSX_SOURCE}/libPhysX_static_64.a
+        ${PHYSX_SOURCE}/libPhysXCommon_static_64.a
+        ${PHYSX_SOURCE}/libPhysXFoundation_static_64.a
+        ${PHYSX_SOURCE}/libPhysXCooking_static_64.a
+        ${PHYSX_SOURCE}/libPhysXExtensions_static_64.a
+        ${PHYSX_SOURCE}/libPhysXPvdSDK_static_64.a
+        ${PHYSX_SOURCE}/libPhysXCharacterKinematic_static_64.a
     )
 endif()
-
-

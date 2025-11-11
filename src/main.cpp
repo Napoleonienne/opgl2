@@ -11,7 +11,7 @@
 #include "imgui.h"
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
-
+#define GLM_SWIZZLE
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -33,7 +33,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 // Fonction pour gérer les entrées clavier
 void processInput(GLFWwindow *window);
 unsigned int chargerTexture(const char* chemin);
-void interface(float* rX,float* rY,float* rZ,glm::vec4 *couleur,float* fov);
+void interface(glm::vec3 *couleur);
 void SetupImGuiModernStyle();
 std::vector<glm::vec3> vecaleatoire(int n);
 float random_float(float min, float max);
@@ -47,30 +47,36 @@ const unsigned int SCR_HEIGHT = 600;
 glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, 1.0f);
 glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
-float deltaTime = 1.0f; // Time between current frame and last frame
-float lastFrame = 1.0f; // Time of last frame
+float deltaTime = 1.0f; 
+float lastFrame = 1.0f;
 float yaw;
 float pitch;
 static double lastToggle = 0.0;
 float fov = 45.0f;
 
-
+struct LUMI {
+ glm::vec3 position;
+ glm::vec3 ambient;
+ glm::vec3 diffuse;
+ glm::vec3 specular;
+};
 float lastX = SCR_WIDTH/2, lastY = SCR_HEIGHT/2;
 
 CameraController camprincipale(cameraPos, cameraFront, cameraUp, yaw, pitch, deltaTime, SCR_WIDTH, SCR_HEIGHT);
 
-struct material
-{
-    /* data */
+struct Material {
+   glm::vec3 ambient;
+    glm::vec3 diffuse;
+    glm::vec3 specular;
+    float shininess;
 };
-
 
 int main()
 {
     // Initialisation GLFW
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 #ifdef __APPLE__
@@ -114,8 +120,9 @@ int main()
 
 
     glm::vec3 couleur_sphere(1.0f,0.5f,0.31f);
+
     Sphere sphere(glm::vec3(0.0f,0.0f,0.0f),
-    5.6f,glm::vec4(couleur_sphere,1.0f),
+    1.5f,glm::vec4(couleur_sphere,0.4f),
     Shader("../shader/sphere.vs","../shader/sphere.fs"));
 
  
@@ -129,67 +136,81 @@ int main()
         10000.2f
                                         );
 
-    float rotX = 0.0f;
-    float rotY = 0.0f;
-    float rotZ = 0.0f;                             
-    glm::vec4 couleur = glm::vec4(0.5f,0.6f,0.3f,1.0f);
-    glm::vec4* c = &couleur;
-    
-    glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-    glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
-    glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f); 
-    glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
-    
+ 
+    Material mystere({1.0f, 0.5f, 0.31f},{1.0f, 0.5f, 0.31f},{0.5f, 0.5f, 0.5f},32.0f);
 
-
-    GLuint tex = chargerTexture("../wall.jpg");
-    // Boucle principale
   
   glm::mat4 sp(1.0f);
   glm::mat4 modsoleil(1.0f);
-  modsoleil =
-   glm::rotate(
-    modsoleil,
-    glm::radians(45.0f),
-  glm::vec3(1.0f, 0.2f, 0.0f ) );
   
-#include <memory>
+  
   sp = glm::translate(
     sp,
     glm::vec3(0.0f, 10.0f, 0.0f ) );
+    int Nombre_object = 100;
+    std::vector<glm::vec3> POS = vecaleatoire(Nombre_object);
+    auto couleur_lumier = glm::vec3(1.0f) ;
+    auto lightPos = glm::vec3(0.0f,0.0f,3.0f);
 
-    std::vector<glm::vec3> POS = vecaleatoire(1000);
-    lamp soleil(glm::vec3(1.5,1.0,0.5),6,Shader("../shader/soleil.vs","../shader/soleil.fs"));
-    glm::vec3 lightColor(0.33f, 0.42f, 0.18f);
-    soleil.shader.set("lightColor",lightColor);
+    LUMI soleillum(lightPos,{ 0.2f, 0.2f, 0.2f},{0.5f, 0.5f, 0.5f},{1.0f, 1.0f, 1.0f});
+    lamp soleil(soleillum.position,5.0f, couleur_lumier  ,Shader("../shader/soleil.vs","../shader/soleil.fs"));
+
+    auto a = &couleur_lumier;
+    glm::mat4 mattrix[Nombre_object];
+    for (int i =0; i <Nombre_object; i++)
+    {
+
+        glm::mat4 temp1 = glm::translate(glm::mat4(1.0f), POS.at(i)) ;
+        mattrix[i] = temp1;
+
+    }
+    
+    glm::mat4 pol = glm::translate(glm::mat4(1.0f),glm::vec3(-15.24,0.66,5.67));
+   glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+
     while (!glfwWindowShouldClose(window))
     {
+        float currentFrame = glfwGetTime();
         processInput(window);
-        glClearColor(0.3f, 0.0f, 0.5f, 1.0f);
+        glClearColor(0.0f, 0.2f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-        ImGui::ShowDemoWindow();
+        interface(a);
+
         glm::mat4 view;
         view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp); 
+        soleil.shader.set("lightColor",couleur_lumier);
+        soleil.shader.set("utime",currentFrame);
+        sphere.shade.set("light.couleur",couleur_lumier);
+        sphere.shade.set("light.position",soleillum.position);
+        sphere.shade.set("light.ambient",soleillum.ambient);
+        sphere.shade.set("light.diffuse",soleillum.diffuse);
+        sphere.shade.set("light.specular",soleillum.specular);
 
-        sphere.shade.set("light",glm::vec3(0.33f, 0.42f, 0.18f));
-
+        sphere.shade.set("material.ambient",  mystere.ambient);
+        sphere.shade.set("material.diffuse",  mystere.diffuse);
+        sphere.shade.set("material.specular", mystere.specular);
+        sphere.shade.set("material.shininess", mystere.shininess);
+                
+                
+        sphere.shade.set("camerapos",cameraPos);
 
         soleil.dessiner(projection, modsoleil , view);
 
-        float utime=glfwGetTime();
-        
-                     
+        modsoleil = glm::translate(glm::mat4(1.0f) , glm::vec3(35.0f*cos(currentFrame),0.5f, 50*sin(currentFrame) ) );
 
-        for (auto pos :POS)
+        soleillum.position = glm::vec3(modsoleil[3]);
+        for (auto mat :mattrix)
         {
-            sp = glm::translate(glm::mat4(1.0f),pos) ;
-            sp = glm::rotate(sp,sin(45.0f)*utime,glm::vec3(0.0,0.7,0.0));
-            sphere.dessiner(projection,sp,view);
+            
+            sphere.dessiner(projection,mat,view);
         }
-         
+
+
+        sphere.dessiner(projection, pol ,view);
 
                                              
         
@@ -197,7 +218,6 @@ int main()
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         glfwSwapBuffers(window);
 
-        float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
         glfwPollEvents();
@@ -299,22 +319,24 @@ unsigned int chargerTexture(const char* chemin)
     stbi_image_free(data);
     return texture;
 }
-void interface(float* rX,float* rY,float* rZ,glm::vec4 *couleur, float* fov)
+
+void interface(glm::vec3 *couleur)
 {
-        ImGui::Begin("control");
-        ImGui::Button("rotation");
-        ImGui::SliderAngle("rotation x",rX,-180.0f,180.0f);
-        ImGui::SliderAngle("rotation y",rY,-180.0f,180.0f);
-        ImGui::SliderAngle("rotation z",rZ,-180.0f,180.0f);
-        ImGui::SliderAngle("fov",fov,0.0f,180.0f);
-        ImGui::ColorEdit4("couleeur",glm::value_ptr(*couleur));
-        ImGui::TextColored(ImVec4(0.3f, 0.8f, 1.0f, 1.0f),
-                   "CameraPos: (%.2f, %.2f, %.2f)",
-                   cameraPos.x, cameraPos.y, cameraPos.z);
+    ImGui::Begin("Contrôle");
 
-        ImGui::End();
+    // Slider pour l'angle de champ de vision
+    ImGui::SliderAngle("FOV", &fov, 0.0f, 180.0f);
+
+    // Éditeur de couleur pour la lumière
+    ImGui::ColorEdit3("Couleur", glm::value_ptr(*couleur));
+
+    // Affichage de la position de la caméra
+    ImGui::TextColored(ImVec4(0.3f, 0.8f, 1.0f, 1.0f),
+                       "Position Caméra: (%.2f, %.2f, %.2f)",
+                       cameraPos.x, cameraPos.y, cameraPos.z);
+
+    ImGui::End();
 }
-
 
 void SetupImGuiModernStyle()
 {

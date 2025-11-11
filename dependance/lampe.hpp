@@ -9,7 +9,7 @@ struct lightpoint{
 
 class lamp {
 public:
-    lamp(glm::vec3 pos, float taille, Shader shade);
+    lamp(glm::vec3 pos, float taille,glm::vec3 couleur, Shader shade);
 
     void init();
     void detruire();
@@ -17,6 +17,7 @@ public:
 
     glm::vec3 position;
     Shader shader;
+    glm::vec3 lightColor;
 
 private:
     unsigned int lightVAO = 0;

@@ -9,10 +9,9 @@
 
 
 
-Sphere::Sphere(glm::vec3 origine, float rayon, glm::vec4 _couleur,Shader a): shade(a),couleur(_couleur){
+Sphere::Sphere(glm::vec3 origine, float rayon, glm::vec3 _couleur,Shader a): shade(a),couleur(_couleur){
     int latitudeCount = face;
     int longitudeCount = face/2;
-    normale.reserve( (face + 1) * (face / 2 + 1));
 
     for (int lat = 0; lat <= latitudeCount; lat++) {
         float theta = glm::pi<float>() * lat / latitudeCount; // de 0 à pi
@@ -31,7 +30,7 @@ Sphere::Sphere(glm::vec3 origine, float rayon, glm::vec4 _couleur,Shader a): sha
         }
     }
  
-    
+    normale.assign(vertex.size(), glm::vec3(0.0f));
 
     // Création des indices
     for (int lat = 0; lat < latitudeCount; lat++) {
@@ -80,23 +79,31 @@ for (size_t i = 0; i < normale.size(); i++)
 
 void Sphere::init()
 {
-glGenVertexArrays(1, &VAO);
-glGenBuffers(1, &VBO);
-glGenBuffers(1, &EBO);
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
+    glGenBuffers(1, &VBO2);
 
-glBindVertexArray(VAO);
+    glBindVertexArray(VAO);
 
-glBindBuffer(GL_ARRAY_BUFFER, VBO);
-glBufferData(GL_ARRAY_BUFFER, vertex.size()*sizeof(glm::vec3), vertex.data(), GL_STATIC_DRAW);
+    // Positions
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, vertex.size() * sizeof(glm::vec3), vertex.data(), GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    glEnableVertexAttribArray(0);
 
-glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-glBufferData(GL_ELEMENT_ARRAY_BUFFER, indice.size()*sizeof(GLuint), indice.data(), GL_STATIC_DRAW);
+    // Normales
+    glBindBuffer(GL_ARRAY_BUFFER, VBO2);
+    glBufferData(GL_ARRAY_BUFFER, normale.size() * sizeof(glm::vec3), normale.data(), GL_STATIC_DRAW);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    glEnableVertexAttribArray(1);
 
-// Attributs
-glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-glEnableVertexAttribArray(0);
+    // Indices
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indice.size() * sizeof(GLuint), indice.data(), GL_STATIC_DRAW);
+}
 
-};
+
 
 void Sphere::dessiner(glm::mat4 procj, glm::mat4 model,glm::mat4 vision){
     shade.use();
@@ -113,4 +120,5 @@ void Sphere::destroy(){
     glDeleteVertexArrays(1,&VAO);
     glDeleteBuffers(1,&VBO);
     glDeleteBuffers(1,&EBO);
+    glDeleteBuffers(1,&VBO2);
 }

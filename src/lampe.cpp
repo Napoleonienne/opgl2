@@ -1,8 +1,8 @@
 #include "lampe.hpp"
 #include <glad.h>
 
-lamp::lamp(glm::vec3 pos, float taille, Shader shade)
-    : position(pos), shader(shade)
+lamp::lamp(glm::vec3 pos, float taille, glm::vec3 couleur, Shader shade)
+    : position(pos), shader(shade),lightColor(couleur)
 {
     float h = taille * 0.5f;
 
@@ -27,6 +27,8 @@ lamp::lamp(glm::vec3 pos, float taille, Shader shade)
         3, 2, 6, 6, 7, 3, // haut
         4, 5, 1, 1, 0, 4  // bas
     };
+    
+    init();
 }
 
 void lamp::init() {
@@ -57,6 +59,7 @@ void lamp::detruire() {
 
 void lamp::dessiner(const glm::mat4& projection, const glm::mat4& model, const glm::mat4& view) {
     shader.use();
+    shader.set("lightColor",lightColor);
     shader.set("model", model);
     shader.set("projection", projection);
     shader.set("view", view);

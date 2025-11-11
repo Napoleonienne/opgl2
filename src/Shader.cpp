@@ -50,6 +50,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     glDeleteShader(fragment);
 }
 
+Shader::Shader(){};
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* computePath)
 {

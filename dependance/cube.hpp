@@ -7,11 +7,11 @@
 
 
 
-class Sphere{
+class cube{
     public:
     Shader shade;
 
-    Sphere(glm::vec3 origine,float rayon,glm::vec3 _couleur,Shader a);
+    cube(glm::vec3 origine,float rayon,glm::vec3 _couleur,Shader a);
 
     void dessiner(glm::mat4 procj, glm::mat4 model,glm::mat4 vision);
     void destroy();
@@ -19,9 +19,9 @@ class Sphere{
     private:
     int face =100;
     float pi =glm::pi<float>();
-    std::vector<glm::vec3> vertex;
+    std::vector<glm::vec3> vertices;
     std::vector<glm::vec3> normale;
-    std::vector<GLuint> indice;
+    std::vector<GLuint> indices;
     std::vector<glm::vec2> uv;
     glm::vec3 couleur;
     unsigned int VBO, VAO, EBO,VBO2;
