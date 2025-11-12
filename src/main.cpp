@@ -40,7 +40,7 @@ float random_float(float min, float max);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
-void APIENTRY glDebugOutput(GLenum source, GLenum type,GLuint id,GLenum severity, GLsizei length,const GLchar *message,void *userParam);
+void APIENTRY glDebugOutput(GLenum source, GLenum type,GLuint id,GLenum severity, GLsizei length,const GLchar *message,const void *userParam);
 // Paramètres de la fenêtre
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
@@ -410,7 +410,7 @@ void APIENTRY glDebugOutput(GLenum source,
                             GLenum severity,
                             GLsizei length,
                             const GLchar *message,
-                            void *userParam)
+                            const void *userParam)
 {
     // on ignore les codes ou avertissements non significatifs
     if(id == 131169 || id == 131185 || id == 131218 || id == 131204)

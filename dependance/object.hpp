@@ -25,11 +25,22 @@ class object{
     public:
     Shader shade;
 
-    object(glm::vec3 origine,float rayon,glm::vec3 _couleur,Shader a);
+    object(glm::vec3 origine,float rayon,glm::vec3 _couleur);
 
     void dessiner(glm::mat4 procj, glm::mat4 model,glm::mat4 vision);
     void destroy();
     void init();
+    void setshader(Shader a);
+
+    void  setposition(glm::vec3 nv_position) ;
+    void   setrotation(char axe,float angle) ;
+    void    setscale(glm::vec3 taille)  ;
+
+    glm::vec3  getposition()  ;
+    glm::vec3  getrotation() ;
+    glm::vec3  gettaile() ;
+
+
 
     private:
     Material materiel;
