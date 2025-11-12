@@ -11,7 +11,10 @@ struct Material {
     glm::vec3 diffuse;
     glm::vec3 specular;
     float shininess;
+    float irégularité;
+    float transparence;
 };
+
 struct vertex
 {
    std::vector<glm::vec3> vertices;
@@ -30,8 +33,19 @@ class object{
     void dessiner(glm::mat4 procj, glm::mat4 model,glm::mat4 vision);
     void destroy();
     void init();
+    void component();
+
+    glm::vec3 get_position();
+    glm::vec3 get_rotation();
+    glm::vec3 get_taille();
+    
+    
+    void set_rotation(float angle,char axe='x');
+    void set_taille(glm::vec3);
+    void set_position(glm::vec3 nv_position);
 
     private:
+    
     Material materiel;
     vertex vertex;
     
