@@ -15,6 +15,12 @@ public:
     Shader(const char* vertexPath, const char* fragmentPath);
     Shader(const char* vertexPath, const char* fragmentPath, const char* computePath);
 
+
+
+
+
+
+
     void use() const;
 
     template<typename T>

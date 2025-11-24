@@ -62,7 +62,9 @@
         "expected": "cpp",
         "optional": "cpp",
         "format": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "regex": "cpp",
+        "__node_handle": "cpp"
     },
 
     // Configuration de l'extension CMake Tools
