@@ -1,4 +1,4 @@
-#include <object.hpp>
+#include <object3d.hpp>
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/ext/scalar_constants.hpp>
@@ -8,10 +8,13 @@
 #include <Shader.hpp>
 #include <vector>
 #include <glad.h>
+#include <ostream>
+#include <iostream>
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 
 
-
-
+object::object(GLuint vbo):VBO(vbo){}
 
 void   object::setrotation(char axe,float angle){
     glm::vec3 rotation(0.);
@@ -68,8 +71,31 @@ glm::vec3 object::getposition(){
     return glm::vec3(modele[3]);
 }
 
-void object::setshader(Shader a){
-        shade = a;
+void object::material(type::Material mat){
+        shade.set("material.ambient",   mat.ambient);
+        shade.set("material.diffuse",   mat.diffuse);
+        shade.set("material.specular",  mat.specular);
+        shade.set("material.shininess", mat.shininess);
+                
+}
+void object::translate(glm::vec3 nv_position){
+    glm::vec3 inter( nv_position.x/99,nv_position.y/99,nv_position.z/99);
+    for (int i = 0; i < 99; i++)
+    {
+
+        
+    }
+    
+
+
+
+
+}
+
+void object::texture(unsigned int tex){
+    textures.push_back(tex);
+    
 }
 
 
+virtual object::destroy()

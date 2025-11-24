@@ -148,10 +148,10 @@ void Shader::checkCompileErrors(GLuint shader, const std::string &type) const {
 // -----------------------------------------------------------------------------
 //                      TEMPLATE UNIFORM SYSTEM
 // -----------------------------------------------------------------------------
-void Shader::uniformetex(std::string& name,const unsigned int value)const
+void Shader::settex(const std::string& name,const unsigned int value)const
 {
-    int loc = glGetUniformLocation(ID, name.c_str()); // Nom du uniform dans le shader
-    glUniform1i(loc, value); // 0 = slot GL_TEXTURE0
+    int loc = glGetUniformLocation(ID, name.c_str()); 
+    glUniform1i(loc, value); 
     
 }
 
