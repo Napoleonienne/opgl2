@@ -29,7 +29,7 @@ class object{
     Shader shade;
 
     object(glm::vec3 origine,float rayon,glm::vec3 _couleur,Shader a);
-
+                
     void dessiner(glm::mat4 procj, glm::mat4 model,glm::mat4 vision);
     void destroy();
     void init();
@@ -37,9 +37,7 @@ class object{
 
     glm::vec3 get_position();
     glm::vec3 get_rotation();
-    glm::vec3 get_taille();
-    
-    
+    glm::vec3 get_taille(); 
     void set_rotation(float angle,char axe='x');
     void set_taille(glm::vec3);
     void set_position(glm::vec3 nv_position);

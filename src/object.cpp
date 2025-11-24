@@ -34,6 +34,7 @@ glm::vec3 object::get_taille(){
     return scale;
 }
 
+
 void object::set_position(glm::vec3 nv_position){
     modele *= glm::translate(glm::mat4(1.0F), nv_position);
 }
@@ -77,3 +78,5 @@ void object::init(){
     glBufferData(GL_ARRAY_BUFFER,vertex.vertices.size(), (void)vertex.vertices.size()*sizeof(glm::vec3),)
 
 }
+
+
