@@ -2,12 +2,13 @@
 #include <glm/glm.hpp>
 #include <glm/ext/scalar_constants.hpp>
 #include <Shader.hpp>
-
+#include <object3d.hpp>
 #include <vector>
 
 
 
-class cube{
+
+class cube:object{
     public:
     Shader shade;
 
@@ -16,6 +17,8 @@ class cube{
     void dessiner(glm::mat4 procj, glm::mat4 model,glm::mat4 vision);
     void destroy();
     void init();
+    void materiel(type::Material rFlum);
+    void lumiere(type::LUMI sourceLumineuse);
     private:
     int face =100;
     float pi =glm::pi<float>();
@@ -24,7 +27,7 @@ class cube{
     std::vector<GLuint> indices;
     std::vector<glm::vec2> uv;
     glm::vec3 couleur;
-    unsigned int VBO, VAO, EBO,VBO2;
+    unsigned int VBO, VAO, EBO;
 
 
 

@@ -21,7 +21,7 @@ void Shader::set(const std::string& name, const T& value) const {
         glUniformMatrix3fv(loc, 1, GL_FALSE, glm::value_ptr(value));
     } else if constexpr (std::is_same_v<T, glm::mat4>) {
         glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(value));
-    
+        
     } else {
         static_assert(!sizeof(T*), "Shader::set() type non supporté");
     }

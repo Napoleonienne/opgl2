@@ -26,7 +26,7 @@ public:
     template<typename T>
     void set(const std::string& name, const T& value) const;
 
-    void uniformetex(std::string& name, const unsigned int value) const;
+    void settex(const std::string& name, const unsigned int value) const;
 
 private:
     void checkCompileErrors(GLuint shader, const std::string &type) const;

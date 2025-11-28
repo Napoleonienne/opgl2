@@ -23,14 +23,15 @@
 #include <printf.h>
 #include <format>
 #include "CameraController.hpp"
+#include "cube.hpp"
 #include "Sphere.hpp"
 #include "lampe.hpp"
 #include <memory>
 
+
+
 static GLFWcursorposfun s_previousCursorPosCallback = nullptr;
-// Callback appelée lors du redimensionnement de la fenêtre
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-// Fonction pour gérer les entrées clavier
 void processInput(GLFWwindow *window);
 unsigned int chargerTexture(const char* chemin);
 void interface(glm::vec3 *couleur);
@@ -39,9 +40,8 @@ std::vector<glm::vec3> vecaleatoire(int n);
 float random_float(float min, float max);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-
+unsigned int chargerTexture(const char* chemin);
 void APIENTRY glDebugOutput(GLenum source, GLenum type,GLuint id,GLenum severity, GLsizei length,const GLchar *message,const void *userParam);
-// Paramètres de la fenêtre
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
@@ -54,23 +54,9 @@ float yaw;
 float pitch;
 static double lastToggle = 0.0;
 float fov = 45.0f;
-
-struct LUMI {
- glm::vec3 position;
- glm::vec3 ambient;
- glm::vec3 diffuse;
- glm::vec3 specular;
-};
-float lastX = SCR_WIDTH/2, lastY = SCR_HEIGHT/2;
-
 CameraController camprincipale(cameraPos, cameraFront, cameraUp, yaw, pitch, deltaTime, SCR_WIDTH, SCR_HEIGHT);
+static GLuint VBO_principale;
 
-struct Material {
-   glm::vec3 ambient;
-    glm::vec3 diffuse;
-    glm::vec3 specular;
-    float shininess;
-};
 
 int main()
 {
@@ -107,6 +93,10 @@ int main()
     glfwSetScrollCallback(window, scroll_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
    
+glGenBuffers(1, &VBO_principale);
+glBindBuffer(GL_ARRAY_BUFFER, VBO_principale);
+glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
+
     glEnable(GL_DEPTH_TEST);
 
     // Initialisation ImGui
@@ -139,23 +129,13 @@ int main()
                                         );
 
  
-    Material mystere({1.0f, 0.5f, 0.31f},{1.0f, 0.5f, 0.31f},{0.5f, 0.5f, 0.5f},32.0f);
+    type::Material mystere({1.0f, 0.5f, 0.31f},{1.0f, 0.5f, 0.31f},{0.5f, 0.5f, 0.5f},32.0f);
 
   
   glm::mat4 sp(1.0f);
   glm::mat4 modsoleil(1.0f);
   GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
-    if (flags & GL_CONTEXT_FLAG_DEBUG_BIT)
-    {
-        glEnable(GL_DEBUG_OUTPUT);
-        glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-        glDebugMessageCallback(glDebugOutput, nullptr);
-        glDebugMessageControl(GL_DONT_CARE,
-                            GL_DONT_CARE,
-                            GL_DONT_CARE,
-                            0, nullptr, GL_TRUE);
-    }
-  
+
   
   sp = glm::translate(
     sp,
@@ -165,9 +145,8 @@ int main()
     auto couleur_lumier = glm::vec3(1.0f) ;
     auto lightPos = glm::vec3(0.0f,0.0f,3.0f);
 
-    LUMI soleillum(lightPos,{ 0.2f, 0.2f, 0.2f},{0.5f, 0.5f, 0.5f},{1.0f, 1.0f, 1.0f});
+    type::LUMI soleillum(lightPos,{ 0.2f, 0.2f, 0.2f},{0.5f, 0.5f, 0.5f},{1.0f, 1.0f, 1.0f});
     lamp soleil(soleillum.position,5.0f, couleur_lumier  ,Shader("../shader/soleil.vs","../shader/soleil.fs"));
-
     auto a = &couleur_lumier;
     glm::mat4 mattrix[Nombre_object];
     for (int i =0; i <Nombre_object; i++)
@@ -178,12 +157,15 @@ int main()
 
     }
     
+    cube po({0.,0.,0.},3,{0.5,0.2,0.3},Shader("../shader/cube.vs","../shader/cube.fs"));
+
     glm::mat4 pol = glm::translate(glm::mat4(1.0f),glm::vec3(-15.24,0.66,5.67));
+     glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    
 
-
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    unsigned int cont = chargerTexture("/home/guy/Bureau/opgl2/container2_specular.png");
+    unsigned int specular = chargerTexture("/home/guy/Bureau/opgl2/container2.png");
 
     while (!glfwWindowShouldClose(window))
     {
@@ -198,21 +180,18 @@ int main()
 
         glm::mat4 view;
         view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp); 
-        soleil.shader.set("lightColor",couleur_lumier);
-        soleil.shader.set("utime",currentFrame);
-        sphere.shade.set("light.couleur",couleur_lumier);
-        sphere.shade.set("light.position",soleillum.position);
-        sphere.shade.set("light.ambient",soleillum.ambient);
-        sphere.shade.set("light.diffuse",soleillum.diffuse);
-        sphere.shade.set("light.specular",soleillum.specular);
 
-        sphere.shade.set("material.ambient",  mystere.ambient);
-        sphere.shade.set("material.diffuse",  mystere.diffuse);
-        sphere.shade.set("material.specular", mystere.specular);
-        sphere.shade.set("material.shininess", mystere.shininess);
+       soleil.
+
+
+
+     
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
                 
-                
-        sphere.shade.set("camerapos",cameraPos);
+
+                       
 
         soleil.dessiner(projection, modsoleil , view);
 
@@ -226,7 +205,7 @@ int main()
         }
 
 
-        sphere.dessiner(projection, pol ,view);
+        po.dessiner(projection, pol ,view);
 
                                              
         
@@ -473,3 +452,4 @@ void APIENTRY glDebugOutput(GLenum source,
     std::cout << std::endl;
     std::cout << std::endl;
 }
+

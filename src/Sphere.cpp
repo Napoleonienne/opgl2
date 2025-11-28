@@ -5,7 +5,7 @@
 #include <Sphere.hpp>
 #include <Shader.hpp>
 
-
+static int a;
 
 
 
@@ -88,13 +88,13 @@ void Sphere::init()
 
     // Positions
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, vertex.size() * sizeof(glm::vec3), vertex.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertex.size() * sizeof(glm::vec3), vertex.data(), GL_DYNAMIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
     glEnableVertexAttribArray(0);
 
     // Normales
     glBindBuffer(GL_ARRAY_BUFFER, VBO2);
-    glBufferData(GL_ARRAY_BUFFER, normale.size() * sizeof(glm::vec3), normale.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, normale.size() * sizeof(glm::vec3), normale.data(), GL_DYNAMIC_DRAW);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
     glEnableVertexAttribArray(1);
 

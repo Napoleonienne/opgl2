@@ -2,12 +2,14 @@
 #include <glm/glm.hpp>
 #include <glm/ext/scalar_constants.hpp>
 #include <Shader.hpp>
+#include <object3d.hpp>
 
 #include <vector>
 
+struct Maeriel;
 
 
-class Sphere{
+class Sphere:object{
     public:
     Shader shade;
 
@@ -16,6 +18,8 @@ class Sphere{
     void dessiner(glm::mat4 procj, glm::mat4 model,glm::mat4 vision);
     void destroy();
     void init();
+    void materiel();
+    void lumiere();
     private:
     int face =100;
     float pi =glm::pi<float>();
