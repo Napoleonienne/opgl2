@@ -160,7 +160,7 @@ int main()
   sp = glm::translate(
     sp,
     glm::vec3(0.0f, 10.0f, 0.0f ) );
-    int Nombre_object = 100;
+    int Nombre_object = 10;
     std::vector<glm::vec3> POS = vecaleatoire(Nombre_object);
     auto couleur_lumier = glm::vec3(1.0f) ;
     auto lightPos = glm::vec3(0.0f,0.0f,3.0f);
@@ -179,8 +179,11 @@ int main()
     }
     
     glm::mat4 pol = glm::translate(glm::mat4(1.0f),glm::vec3(-15.24,0.66,5.67));
-   glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
+
+
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     while (!glfwWindowShouldClose(window))
     {
@@ -396,6 +399,7 @@ std::vector<glm::vec3> vecaleatoire(int n){
     };
     return pos;
 }
+
 
 float random_float(float min, float max) {
     static std::random_device rd;  // Générateur de graine aléatoire
