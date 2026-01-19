@@ -41,6 +41,14 @@ set(IMGUI_SOURCES
     ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 )
 
+
+
+set(assimp ${CMAKE_SOURCE_DIR}/externe/assimp/)
+set(assimp_include 
+    ${assimp}/libassimp.so.6.0.2
+    )
+
+
 add_executable(${PROJECT_NAME}
     ${PROJECT_SOURCES}
     ${IMGUI_SOURCES}
@@ -109,6 +117,7 @@ else() # Linux
         pthread
         dl
         m
+        ${assimp_include}
 
 
     )

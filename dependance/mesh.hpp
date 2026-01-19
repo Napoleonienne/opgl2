@@ -1,13 +1,27 @@
 #pragma once
+#include <glm/glm.hpp>
 
+
+
+
+
+struct vertex
+{
+   glm::vec2 uv; 
+   glm::vec3 vertice;
+   uint pos;
+
+};
+
+ajou
 class mesh {
 public:
-    mesh() = default;
-    ~mesh() = default;
+    mesh() ;
+    ~mesh() ;
     void load_obj(const char* path);
 
     private: 
-    int *mesh;
+    int *verte;
 
 
 
