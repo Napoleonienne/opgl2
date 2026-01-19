@@ -45,7 +45,7 @@ set(IMGUI_SOURCES
 
 set(assimp ${CMAKE_SOURCE_DIR}/externe/assimp/)
 set(assimp_include 
-    ${assimp}/libassimp.so.6.0.2
+    ${assimp}/libassimp.so
     )
 
 

@@ -13,7 +13,6 @@ struct vertex
 
 };
 
-ajou
 class mesh {
 public:
     mesh() ;
