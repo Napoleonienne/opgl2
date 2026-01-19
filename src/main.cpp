@@ -23,9 +23,6 @@
 #include <printf.h>
 #include <format>
 #include "CameraController.hpp"
-#include "cube.hpp"
-#include "Sphere.hpp"
-#include "lampe.hpp"
 #include <memory>
 
 
@@ -111,13 +108,6 @@ glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
     ImGui_ImplOpenGL3_Init("#version 450");
 
 
-    glm::vec3 couleur_sphere(1.0f,0.5f,0.31f);
-
-    Sphere sphere(glm::vec3(0.0f,0.0f,0.0f),
-    1.5f,glm::vec4(couleur_sphere,0.4f),
-    Shader("../shader/sphere.vs","../shader/sphere.fs"));
-
- 
 
 
     // Matrices
@@ -129,37 +119,11 @@ glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
                                         );
 
  
-    type::Material mystere({1.0f, 0.5f, 0.31f},{1.0f, 0.5f, 0.31f},{0.5f, 0.5f, 0.5f},32.0f);
 
   
-  glm::mat4 sp(1.0f);
-  glm::mat4 modsoleil(1.0f);
-  GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
+
 
   
-  sp = glm::translate(
-    sp,
-    glm::vec3(0.0f, 10.0f, 0.0f ) );
-    int Nombre_object = 10;
-    std::vector<glm::vec3> POS = vecaleatoire(Nombre_object);
-    auto couleur_lumier = glm::vec3(1.0f) ;
-    auto lightPos = glm::vec3(0.0f,0.0f,3.0f);
-
-    type::LUMI soleillum(lightPos,{ 0.2f, 0.2f, 0.2f},{0.5f, 0.5f, 0.5f},{1.0f, 1.0f, 1.0f});
-    lamp soleil(soleillum.position,5.0f, couleur_lumier  ,Shader("../shader/soleil.vs","../shader/soleil.fs"));
-    auto a = &couleur_lumier;
-    glm::mat4 mattrix[Nombre_object];
-    for (int i =0; i <Nombre_object; i++)
-    {
-
-        glm::mat4 temp1 = glm::translate(glm::mat4(1.0f), POS.at(i)) ;
-        mattrix[i] = temp1;
-
-    }
-    
-    cube po({0.,0.,0.},3,{0.5,0.2,0.3},Shader("../shader/cube.vs","../shader/cube.fs"));
-
-    glm::mat4 pol = glm::translate(glm::mat4(1.0f),glm::vec3(-15.24,0.66,5.67));
      glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     
@@ -176,12 +140,7 @@ glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-        interface(a);
 
-        glm::mat4 view;
-        view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp); 
-
-       soleil.
 
 
 
@@ -191,23 +150,7 @@ glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
                 
 
-                       
-
-        soleil.dessiner(projection, modsoleil , view);
-
-        modsoleil = glm::translate(glm::mat4(1.0f) , glm::vec3(35.0f*cos(currentFrame),0.5f, 50*sin(currentFrame) ) );
-
-        soleillum.position = glm::vec3(modsoleil[3]);
-        for (auto mat :mattrix)
-        {
-            
-            sphere.dessiner(projection,mat,view);
-        }
-
-
-        po.dessiner(projection, pol ,view);
-
-                                             
+                   
         
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -219,8 +162,7 @@ glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
     }
     
     // Cleanup
-    soleil.detruire();
-    sphere.destroy();
+
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();

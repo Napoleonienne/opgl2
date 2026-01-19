@@ -110,12 +110,14 @@ else() # Linux
         dl
         m
 
-        ${PHYSX_SOURCE}/libPhysX_static_64.a
-        ${PHYSX_SOURCE}/libPhysXCommon_static_64.a
-        ${PHYSX_SOURCE}/libPhysXFoundation_static_64.a
-        ${PHYSX_SOURCE}/libPhysXCooking_static_64.a
-        ${PHYSX_SOURCE}/libPhysXExtensions_static_64.a
-        ${PHYSX_SOURCE}/libPhysXPvdSDK_static_64.a
-        ${PHYSX_SOURCE}/libPhysXCharacterKinematic_static_64.a
+
     )
 endif()
+
+#     ${PHYSX_SOURCE}/libPhysX_static_64.a
+#        ${PHYSX_SOURCE}/libPhysXCommon_static_64.a
+#        ${PHYSX_SOURCE}/libPhysXFoundation_static_64.a
+#        ${PHYSX_SOURCE}/libPhysXCooking_static_64.a
+#        ${PHYSX_SOURCE}/libPhysXExtensions_static_64.a
+#        ${PHYSX_SOURCE}/libPhysXPvdSDK_static_64.a
+#        ${PHYSX_SOURCE}/libPhysXCharacterKinematic_static_64.a

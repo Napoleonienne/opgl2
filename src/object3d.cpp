@@ -96,6 +96,3 @@ void object::texture(unsigned int tex){
     textures.push_back(tex);
     
 }
-
-
-virtual object::destroy()
