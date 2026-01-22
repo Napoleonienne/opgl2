@@ -1,0 +1,49 @@
+#include <f_util.hpp>
+
+
+
+
+
+
+namespace f_util
+{
+
+
+image* chargertex(const char* chemin, bool alpha){
+    image *tex;
+    int width, height, nrChannels;
+    unsigned char *data = stbi_load(chemin, &width, &height, &nrChannels, 0);
+    if (!data)
+    tex->donne = data;
+    tex->hauteur = height;
+    tex->largeur = width;
+    tex->channel = nrChannels;
+    {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+        std::cerr << "Failed to load texture: " << chemin << std::endl;
+        return nullptr;
+    }
+
+    return tex;
+}
+
+
+
+    std::vector<glm::vec3> vecaleatoire(int n){
+        std::vector<glm::vec3> pos;
+        for (int i = 0; i < n; i++)
+        {
+            pos.push_back(glm::vec3(random_float(-1000,1000),random_float(-1000,1000),random_float(-1000,1000)));
+
+        };
+        return pos;
+    }
+
+
+    float random_float(float min, float max) {
+        static std::random_device rd;  // Générateur de graine aléatoire
+        static std::mt19937 gen(rd()); // Moteur de génération (Mersenne Twister)
+        std::uniform_real_distribution<float> dis(min, max); // Distribution uniforme
+        return dis(gen);
+    }
+
+}

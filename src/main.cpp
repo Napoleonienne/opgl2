@@ -1,16 +1,13 @@
 // Charge les fonctions OpenGL
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+
 
 #include <glad.h>        // Toujours avant glfw3.h
 #include <GLFW/glfw3.h>
 
 #include <Shader.hpp>    // Classe shader personnalisée
-#define IMGUI_DEFINE_MATH_OPERATORS
-#define IMGUI_IMPL_OPENGL_LOADER_CUSTOM
-#include "imgui.h"
-#include "backends/imgui_impl_glfw.h"
-#include "backends/imgui_impl_opengl3.h"
+
+#include "gui.hpp"
+
 #define GLM_SWIZZLE
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
@@ -18,7 +15,6 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/ext/scalar_constants.hpp>
 #include <iostream>
-#include <random>
 #include <vector>
 #include <printf.h>
 #include <format>
@@ -31,13 +27,8 @@ static GLFWcursorposfun s_previousCursorPosCallback = nullptr;
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 unsigned int chargerTexture(const char* chemin);
-void interface(glm::vec3 *couleur);
-void SetupImGuiModernStyle();
-std::vector<glm::vec3> vecaleatoire(int n);
-float random_float(float min, float max);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-unsigned int chargerTexture(const char* chemin);
 void APIENTRY glDebugOutput(GLenum source, GLenum type,GLuint id,GLenum severity, GLsizei length,const GLchar *message,const void *userParam);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
@@ -67,6 +58,7 @@ int main()
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
+
     glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, 1);
 
     // Création de la fenêtre
@@ -77,8 +69,11 @@ int main()
         glfwTerminate();
         return -1;
     }
+
+
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window,framebuffer_size_callback);
+
 
     // Initialisation GLAD
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -90,24 +85,15 @@ int main()
     glfwSetScrollCallback(window, scroll_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
    
-glGenBuffers(1, &VBO_principale);
-glBindBuffer(GL_ARRAY_BUFFER, VBO_principale);
-glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
+    glGenBuffers(1, &VBO_principale);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO_principale);
+    glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
+
 
     glEnable(GL_DEPTH_TEST);
 
-    // Initialisation ImGui
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    SetupImGuiModernStyle();
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
 
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init("#version 450");
-
-
+    gui::init(window);
 
 
     // Matrices
@@ -115,8 +101,7 @@ glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
         glm::radians(80.0f), 
         (float)SCR_WIDTH / (float)SCR_HEIGHT, 
         0.1f, 
-        10000.2f
-                                        );
+        10000.2f);
 
  
 
@@ -124,12 +109,10 @@ glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
 
 
   
-     glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     
 
-    unsigned int cont = chargerTexture("/home/guy/Bureau/opgl2/container2_specular.png");
-    unsigned int specular = chargerTexture("/home/guy/Bureau/opgl2/container2.png");
 
     while (!glfwWindowShouldClose(window))
     {
@@ -137,9 +120,7 @@ glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
         processInput(window);
         glClearColor(0.0f, 0.2f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
+        gui::nvframes();
 
 
 
@@ -152,8 +133,7 @@ glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
 
                    
         
-        ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        gui::endframes();
         glfwSwapBuffers(window);
 
         deltaTime = currentFrame - lastFrame;
@@ -163,9 +143,7 @@ glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
     
     // Cleanup
 
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
+    gui::liberer();
 
     glfwTerminate();
     
@@ -229,105 +207,9 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     glViewport(0,0,width,height);
 }
 
-unsigned int chargerTexture(const char* chemin)
-{
-    unsigned int texture;
-    glGenTextures(1,&texture);
-    glBindTexture(GL_TEXTURE_2D,texture);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);   
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    int width, height, nrChannels;
-    stbi_set_flip_vertically_on_load(true);
-    unsigned char* data = stbi_load(chemin,&width,&height,&nrChannels,0);
-    if (data)
-    {
-        GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
-        glTexImage2D(GL_TEXTURE_2D,0,format,width,height,0,format,GL_UNSIGNED_BYTE,data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cerr << "Échec du chargement de la texture : " << chemin << std::endl;
-    }
-    stbi_image_free(data);
-    return texture;
-}
-
-void interface(glm::vec3 *couleur)
-{
-    ImGui::Begin("Contrôle");
-
-    // Slider pour l'angle de champ de vision
-    ImGui::SliderAngle("FOV", &fov, 0.0f, 180.0f);
-
-    // Éditeur de couleur pour la lumière
-    ImGui::ColorEdit3("Couleur", glm::value_ptr(*couleur));
-
-    // Affichage de la position de la caméra
-    ImGui::TextColored(ImVec4(0.3f, 0.8f, 1.0f, 1.0f),
-                       "Position Caméra: (%.2f, %.2f, %.2f)",
-                       cameraPos.x, cameraPos.y, cameraPos.z);
-
-    ImGui::End();
-}
-
-void SetupImGuiModernStyle()
-{
-    ImGuiStyle& style = ImGui::GetStyle();
-
-    // Param�tres de base
-    style.WindowRounding = 10.0f;   // bords arrondis
-    style.FrameRounding = 6.0f;     // boutons et sliders arrondis
-    style.WindowPadding = ImVec2(10, 10);
-    style.FramePadding = ImVec2(6, 4);
-    style.ItemSpacing = ImVec2(8, 6);
-    style.ItemInnerSpacing = ImVec2(6, 4);
-
-    // Couleurs semi-transparentes (alpha < 1.0)
-    ImVec4 transparentBg = ImVec4(0.12f, 0.12f, 0.14f, 0.6f); // fen�tre
-    ImVec4 accentColor    = ImVec4(0.35f, 0.65f, 0.95f, 0.8f); // boutons, sliders
-    ImVec4 hoverColor     = ImVec4(0.45f, 0.75f, 1.0f, 0.8f);
-    ImVec4 activeColor    = ImVec4(0.25f, 0.55f, 0.85f, 0.9f);
-    ImVec4 textColor      = ImVec4(0.95f, 0.95f, 0.95f, 1.0f);
-
-    style.Colors[ImGuiCol_WindowBg]       = transparentBg;
-    style.Colors[ImGuiCol_FrameBg]        = ImVec4(0.18f, 0.18f, 0.2f, 0.5f);
-    style.Colors[ImGuiCol_FrameBgHovered] = hoverColor;
-    style.Colors[ImGuiCol_FrameBgActive]  = activeColor;
-    style.Colors[ImGuiCol_TitleBg]        = transparentBg;
-    style.Colors[ImGuiCol_TitleBgActive]  = accentColor;
-    style.Colors[ImGuiCol_Button]         = accentColor;
-    style.Colors[ImGuiCol_ButtonHovered]  = hoverColor;
-    style.Colors[ImGuiCol_ButtonActive]   = activeColor;
-    style.Colors[ImGuiCol_Header]         = accentColor;
-    style.Colors[ImGuiCol_HeaderHovered]  = hoverColor;
-    style.Colors[ImGuiCol_HeaderActive]   = activeColor;
-    style.Colors[ImGuiCol_SliderGrab]     = accentColor;
-    style.Colors[ImGuiCol_SliderGrabActive] = activeColor;
-}
 
 
-std::vector<glm::vec3> vecaleatoire(int n){
-    std::vector<glm::vec3> pos;
-    for (int i = 0; i < n; i++)
-    {
-        pos.push_back(glm::vec3(random_float(-1000,1000),random_float(-1000,1000),random_float(-1000,1000)));
 
-    };
-    return pos;
-}
-
-
-float random_float(float min, float max) {
-    static std::random_device rd;  // Générateur de graine aléatoire
-    static std::mt19937 gen(rd()); // Moteur de génération (Mersenne Twister)
-    std::uniform_real_distribution<float> dis(min, max); // Distribution uniforme
-    return dis(gen);
-}
 
 void APIENTRY glDebugOutput(GLenum source,
                             GLenum type,
