@@ -19,6 +19,9 @@ struct image
 namespace f_util
 {
 image* chargertex(const char* chemin, bool alpha);
+std::vector<glm::vec3> vecaleatoire(int n);
+ float random_float(float min, float max) ;
+
 
 
 

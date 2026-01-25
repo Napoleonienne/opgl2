@@ -1,132 +1,133 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.34)
 project(OpenGL2 VERSION 0.1 LANGUAGES CXX C)
 
-# Optimisation et vectorisation auto
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native")
+include(FetchContent)
+include(CPM.cmake)
+if (NOT APPLE AND NOT WIN32)
+    # On utilise la variable d'environnement pour éviter le chemin en dur
+    set(CPM_SOURCE_CACHE "$ENV{HOME}/.cache/CPM")
+    message(STATUS "L'archive des sources est scellée dans : ${CPM_SOURCE_CACHE}")
+endif()
+
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Détection des dépendances
-find_package(OpenGL REQUIRED)
-find_package(glm REQUIRED)
-
-# GLFW
-find_package(PkgConfig REQUIRED)
-pkg_search_module(GLFW REQUIRED glfw3)
-
-if(NOT GLFW_FOUND)
-    message(FATAL_ERROR "GLFW not found. Installez libglfw3-dev et réessayez.")
+if(NOT MSVC)
+    add_compile_options(-O3 -march=native)
 endif()
 
-# Chemins
-set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/external/imgui)
-set(PHYSX_DIR ${CMAKE_SOURCE_DIR}/external/physx)
-set(PHYSX_SOURCE ${PHYSX_DIR}/physx/bin/linux.x86_64/debug)
 
-# Sources du projet
+CPMAddPackage(
+    NAME assimp
+    GITHUB_REPOSITORY assimp/assimp
+    VERSION 6.0.3
+    OPTIONS
+        "ASSIMP_BUILD_TESTS OFF"
+        "ASSIMP_INSTALL OFF"
+        "ASSIMP_BUILD_ASSIMP_TOOLS OFF"
+        "ASSIMP_BUILD_WERROR OFF"
+)
+
+CPMAddPackage(
+    NAME imgui
+    GITHUB_REPOSITORY ocornut/imgui
+    VERSION 1.91.5 
+    DOWNLOAD_ONLY YES
+)
+
+CPMAddPackage(
+    NAME glfw
+    GITHUB_REPOSITORY glfw/glfw
+    VERSION 3.4
+    OPTIONS
+        "GLFW_BUILD_EXAMPLES OFF"
+        "GLFW_BUILD_TESTS OFF"
+        "GLFW_BUILD_DOCS OFF"
+)
+
+CPMAddPackage(
+    name glm 
+    GITHUB_REPOSITORY g-truc/glm
+    GIT_TAG 1.0.3
+    OPTIONS
+
+)
+
+find_package(OpenGL REQUIRED)
+
+
+
+
+if(assimp_ADDED)
+    if(NOT MSVC)
+        target_compile_options(assimp PRIVATE -Wno-maybe-uninitialized -Wno-unused-parameter)
+    endif()
+endif()
+
+if(imgui_ADDED)
+    add_library(imgui STATIC
+        ${imgui_SOURCE_DIR}/imgui.cpp
+        ${imgui_SOURCE_DIR}/imgui_draw.cpp
+        ${imgui_SOURCE_DIR}/imgui_widgets.cpp
+        ${imgui_SOURCE_DIR}/imgui_tables.cpp
+        ${imgui_SOURCE_DIR}/imgui_demo.cpp
+        ${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp
+        ${imgui_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp
+    )
+    target_include_directories(imgui PUBLIC 
+        ${imgui_SOURCE_DIR} 
+        ${imgui_SOURCE_DIR}/backends
+    )
+    # ImGui a besoin de savoir comment charger OpenGL
+    target_compile_definitions(imgui PUBLIC IMGUI_IMPL_OPENGL_LOADER_GLAD)
+endif()
+
+
 file(GLOB_RECURSE PROJECT_SOURCES
     "${CMAKE_SOURCE_DIR}/src/*.cpp"
     "${CMAKE_SOURCE_DIR}/src/*.c"
 )
-message(STATUS "Sources trouvées : ${PROJECT_SOURCES}")
 
-# Sources ImGui
-set(IMGUI_SOURCES
-    ${IMGUI_DIR}/imgui.cpp
-    ${IMGUI_DIR}/imgui_draw.cpp
-    ${IMGUI_DIR}/imgui_tables.cpp
-    ${IMGUI_DIR}/imgui_widgets.cpp
-    ${IMGUI_DIR}/imgui_demo.cpp
-    ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
-    ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ${CMAKE_SOURCE_DIR}/dependance
+    ${CMAKE_SOURCE_DIR}/externe
+    ${GLFW_INCLUDE_DIRS}
+    ${PHYSX_DIR}/physx/include
+    ${PHYSX_DIR}/pxshared/include
 )
 
 
-
-set(assimp ${CMAKE_SOURCE_DIR}/externe/assimp/)
-set(assimp_include 
-    ${assimp}/libassimp.so
-    )
-
-
-add_executable(${PROJECT_NAME}
-    ${PROJECT_SOURCES}
-    ${IMGUI_SOURCES}
-)
-
-# Définitions pour ImGui
-target_compile_definitions(${PROJECT_NAME} PRIVATE IMGUI_IMPL_OPENGL_LOADER_GLAD)
-
-# Dossiers d’inclusion
-target_include_directories(${PROJECT_NAME}
-    PRIVATE
-        ${CMAKE_SOURCE_DIR}/dependance
-        ${CMAKE_SOURCE_DIR}/externe
-        ${IMGUI_DIR}
-        ${IMGUI_DIR}/backends
-        ${GLFW_INCLUDE_DIRS}
-        ${PHYSX_DIR}/physx/include
-        ${PHYSX_DIR}/pxshared/include
-)
-
-# Liens des bibliothèques
-if(WIN32)
-    target_link_libraries(${PROJECT_NAME} PRIVATE 
-    OpenGL::GL 
-    glfw 
-    glm::glm
-    
+set(PHYSX_LIBS
     ${PHYSX_SOURCE}/libPhysX_static_64.a
-        ${PHYSX_SOURCE}/libPhysXCommon_static_64.a
-        ${PHYSX_SOURCE}/libPhysXFoundation_static_64.a
-        ${PHYSX_SOURCE}/libPhysXCooking_static_64.a
-        ${PHYSX_SOURCE}/libPhysXExtensions_static_64.a
-        ${PHYSX_SOURCE}/libPhysXPvdSDK_static_64.a
-        ${PHYSX_SOURCE}/libPhysXCharacterKinematic_static_64.a
-    )
+    ${PHYSX_SOURCE}/libPhysXCommon_static_64.a
+    ${PHYSX_SOURCE}/libPhysXFoundation_static_64.a
+    ${PHYSX_SOURCE}/libPhysXCooking_static_64.a
+    ${PHYSX_SOURCE}/libPhysXExtensions_static_64.a
+    ${PHYSX_SOURCE}/libPhysXPvdSDK_static_64.a
+    ${PHYSX_SOURCE}/libPhysXCharacterKinematic_static_64.a
+)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+    imgui 
+    glfw          
+    assimp::assimp  
+    glm::glm
+    OpenGL::GL
+    ${GLFW_LIBRARIES} 
+)
+
+if(WIN32)
+    #target_link_libraries(${PROJECT_NAME} PRIVATE ${PHYSX_LIBS})
 elseif(APPLE)
     find_library(COCOA Cocoa)
     find_library(IOKIT IOKit)
     find_library(COREVIDEO CoreVideo)
-    target_link_libraries(${PROJECT_NAME} PRIVATE 
-    OpenGL::GL 
-    glfw 
-    glm::glm 
-    ${COCOA} 
-    ${IOKIT} 
-    ${COREVIDEO}
-    
-    ${PHYSX_SOURCE}/libPhysX_static_64.a
-        ${PHYSX_SOURCE}/libPhysXCommon_static_64.a
-        ${PHYSX_SOURCE}/libPhysXFoundation_static_64.a
-        ${PHYSX_SOURCE}/libPhysXCooking_static_64.a
-        ${PHYSX_SOURCE}/libPhysXExtensions_static_64.a
-        ${PHYSX_SOURCE}/libPhysXPvdSDK_static_64.a
-        ${PHYSX_SOURCE}/libPhysXCharacterKinematic_static_64.a
-    )
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${COCOA} ${IOKIT} ${COREVIDEO} ${PHYSX_LIBS})
 else() # Linux
     target_link_libraries(${PROJECT_NAME} PRIVATE
-        OpenGL::GL
-        glfw
-        glm::glm
-        X11
-        Xrandr
-        Xi
-        Xxf86vm
-        Xcursor
-        pthread
-        dl
-        m
-        ${assimp_include}
-
-
+        #${PHYSX_LIBS}
+        X11 Xrandr Xi Xxf86vm Xcursor
+        pthread dl m
     )
 endif()
-
-#     ${PHYSX_SOURCE}/libPhysX_static_64.a
-#        ${PHYSX_SOURCE}/libPhysXCommon_static_64.a
-#        ${PHYSX_SOURCE}/libPhysXFoundation_static_64.a
-#        ${PHYSX_SOURCE}/libPhysXCooking_static_64.a
-#        ${PHYSX_SOURCE}/libPhysXExtensions_static_64.a
-#        ${PHYSX_SOURCE}/libPhysXPvdSDK_static_64.a
-#        ${PHYSX_SOURCE}/libPhysXCharacterKinematic_static_64.a

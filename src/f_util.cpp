@@ -28,12 +28,11 @@ image* chargertex(const char* chemin, bool alpha){
 
 
 
-    std::vector<glm::vec3> vecaleatoire(int n){
+    std::vector<glm::vec3> vecaleatoire(int n,float binf,float bsup){
         std::vector<glm::vec3> pos;
         for (int i = 0; i < n; i++)
         {
-            pos.push_back(glm::vec3(random_float(-1000,1000),random_float(-1000,1000),random_float(-1000,1000)));
-
+            pos.push_back(glm::vec3(random_float(binf,bsup),random_float(binf,bsup),random_float(binf,bsup)));
         };
         return pos;
     }
@@ -45,5 +44,7 @@ image* chargertex(const char* chemin, bool alpha){
         std::uniform_real_distribution<float> dis(min, max); // Distribution uniforme
         return dis(gen);
     }
+
+    
 
 }

@@ -7,7 +7,7 @@
 #include <Shader.hpp>    // Classe shader personnalisée
 
 #include "gui.hpp"
-
+#include <buffer.hpp>
 #define GLM_SWIZZLE
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
@@ -69,7 +69,7 @@ int main()
         glfwTerminate();
         return -1;
     }
-
+    buff::initialiser(1000);
 
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window,framebuffer_size_callback);
@@ -81,13 +81,11 @@ int main()
         std::cerr << "Échec de l'initialisation de GLAD" << std::endl;
         return -1;
     }
-
+    
     glfwSetScrollCallback(window, scroll_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
    
-    glGenBuffers(1, &VBO_principale);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO_principale);
-    glBufferData(GL_ARRAY_BUFFER, 2e6, nullptr, GL_STATIC_DRAW);
+    
 
 
     glEnable(GL_DEPTH_TEST);
