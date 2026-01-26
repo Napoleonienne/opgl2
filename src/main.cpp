@@ -43,7 +43,6 @@ float pitch;
 static double lastToggle = 0.0;
 float fov = 45.0f;
 CameraController camprincipale(cameraPos, cameraFront, cameraUp, yaw, pitch, deltaTime, SCR_WIDTH, SCR_HEIGHT);
-static GLuint VBO_principale;
 
 
 int main()
@@ -69,8 +68,8 @@ int main()
         glfwTerminate();
         return -1;
     }
-    buff::initialiser(1000);
 
+    buffer princ;
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window,framebuffer_size_callback);
 
