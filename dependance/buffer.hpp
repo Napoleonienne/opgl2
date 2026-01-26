@@ -1,10 +1,7 @@
 #pragma once
 #include <glad.h>
 #include <string>
-GLuint vbodym;
-GLuint VBO_principale;
-int cursor;
-int cursor;
+#include <iostream>
 
 
 
@@ -12,12 +9,18 @@ class buffer{
     public:
     GLuint vbodym;
     GLuint VBO_principale;
-    buffer(int t=1);
-    std::string supp_buff(int indice);
+    buffer();
+    ~buffer();
+    int get_cursorp();
+    int get_cursord();
+
+    void add_mem_dym(int mem);
+    void add_mem_static(int meme);
+
     
     private:
-    int cursorp;
-    int cursord;
+    int cursorp= 0;
+    int cursord=0;
     int vbp_;
 
 

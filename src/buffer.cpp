@@ -3,20 +3,25 @@
 
 
 
-buffer::buffer(int t){
-    glGenBuffers(t, &VBO_principale);
+buffer::buffer(){
+    glGenBuffers(1, &VBO_principale);
     glBindBuffer(GL_ARRAY_BUFFER, VBO_principale);
     glBufferData(GL_ARRAY_BUFFER, 128000000, nullptr, GL_STATIC_DRAW); //128mo
 
-    glGenBuffers(t, &vbodym);
+    glGenBuffers(1, &vbodym);
     glBindBuffer(GL_ARRAY_BUFFER, vbodym);
     glBufferData(GL_ARRAY_BUFFER, 64000000, nullptr, GL_DYNAMIC_DRAW); //64mo
     
 }
 
 
-std::string buffer::supp_buff(int indice){
+buffer::~buffer(){
+    glDeleteBuffers(1,&VBO_principale);
+    glDeleteBuffers(1,&vbodym);
+}
 
-    
-    return "rt";
-};
+int buffer::get_cursord(){}
+int buffer::get_cursorp(){}
+
+void buffer::add_mem_dym(int mem){}
+void buffer::add_mem_static(int mem){}

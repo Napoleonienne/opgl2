@@ -4,16 +4,13 @@
 #include <glad.h>        // Toujours avant glfw3.h
 #include <GLFW/glfw3.h>
 
+
+
+#include <gm.hpp>
 #include <Shader.hpp>    // Classe shader personnalisée
 
 #include "gui.hpp"
 #include <buffer.hpp>
-#define GLM_SWIZZLE
-#include <glm/glm.hpp>
-#include <glm/gtx/string_cast.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/ext/scalar_constants.hpp>
 #include <iostream>
 #include <vector>
 #include <printf.h>
@@ -69,7 +66,6 @@ int main()
         glfwTerminate();
         return -1;
     }
-    buff::initialiser(1000);
 
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window,framebuffer_size_callback);
