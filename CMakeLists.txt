@@ -52,7 +52,12 @@ CPMAddPackage(
     OPTIONS
 
 )
+cpmaddpackage(
+    name spd
+    GITHUB_REPOSITORY gabime/spdlog
+    VERSION 1.17.0
 
+)
 find_package(OpenGL REQUIRED)
 
 
