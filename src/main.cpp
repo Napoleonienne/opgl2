@@ -3,17 +3,14 @@
 
 #include <glad.h>        // Toujours avant glfw3.h
 #include <GLFW/glfw3.h>
-
-
-
 #include <gm.hpp>
 #include <Shader.hpp>    // Classe shader personnalisée
-
 #include "gui.hpp"
 #include <buffer.hpp>
 #include <iostream>
 #include <vector>
 #include <printf.h>
+
 #include <format>
 #include "CameraController.hpp"
 #include <memory>
@@ -27,7 +24,7 @@ unsigned int chargerTexture(const char* chemin);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void APIENTRY glDebugOutput(GLenum source, GLenum type,GLuint id,GLenum severity, GLsizei length,const GLchar *message,const void *userParam);
-const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_WIDTH = 800;1.17.0
 const unsigned int SCR_HEIGHT = 600;
 
 glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);
