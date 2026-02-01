@@ -3,11 +3,9 @@ project(OpenGL2 VERSION 0.1 LANGUAGES CXX C)
 
 include(FetchContent)
 include(CPM.cmake)
-if (NOT APPLE AND NOT WIN32)
     # On utilise la variable d'environnement pour éviter le chemin en dur
-    set(CPM_SOURCE_CACHE "$ENV{HOME}/.cache/CPM")
-    message(STATUS "L'archive des sources est scellée dans : ${CPM_SOURCE_CACHE}")
-endif()
+set(CPM_SOURCE_CACHE "$ENV{HOME}/.cache/CPM")
+message(STATUS "L'archive des sources est scellée dans : ${CPM_SOURCE_CACHE}")
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -27,6 +25,13 @@ CPMAddPackage(
         "ASSIMP_BUILD_ASSIMP_TOOLS OFF"
         "ASSIMP_BUILD_WERROR OFF"
 )
+CPMAddPackage(
+    NAME EnTT
+    GITHUB_REPOSITORY skypjack/entt
+    VERSION 3.16.0
+ 
+)
+
 
 CPMAddPackage(
     NAME imgui
@@ -60,7 +65,7 @@ find_package(OpenGL REQUIRED)
 
 if(assimp_ADDED)
     if(NOT MSVC)
-        target_compile_options(assimp PRIVATE -Wno-maybe-uninitialized -Wno-unused-parameter)
+        target_compile_options(assimp PUBLIC -Wno-maybe-uninitialized -Wno-unused-parameter)
     endif()
 endif()
 
@@ -89,7 +94,11 @@ file(GLOB_RECURSE PROJECT_SOURCES
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
-target_include_directories(${PROJECT_NAME} PRIVATE
+add_definitions(-D_FILE_OFFSET_BITS=64)
+add_definitions(-D_LARGEFILE_SOURCE)
+target_compile_definitions(${PROJECT_NAME} PUBLIC GLM_ENABLE_EXPERIMENTAL)
+
+target_include_directories(${PROJECT_NAME} PUBLIC
     ${CMAKE_SOURCE_DIR}/dependance
     ${CMAKE_SOURCE_DIR}/externe
     ${GLFW_INCLUDE_DIRS}
@@ -108,13 +117,13 @@ set(PHYSX_LIBS
     ${PHYSX_SOURCE}/libPhysXCharacterKinematic_static_64.a
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE 
+target_link_libraries(${PROJECT_NAME} PUBLIC 
     imgui 
     glfw          
-    assimp::assimp  
+    assimp::assimp 
+    EnTT::EnTT
     glm::glm
     OpenGL::GL
-    ${GLFW_LIBRARIES} 
 )
 
 if(WIN32)
@@ -123,9 +132,9 @@ elseif(APPLE)
     find_library(COCOA Cocoa)
     find_library(IOKIT IOKit)
     find_library(COREVIDEO CoreVideo)
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${COCOA} ${IOKIT} ${COREVIDEO} ${PHYSX_LIBS})
+    target_link_libraries(${PROJECT_NAME} PUBLIC ${COCOA} ${IOKIT} ${COREVIDEO} ${PHYSX_LIBS})
 else() # Linux
-    target_link_libraries(${PROJECT_NAME} PRIVATE
+    target_link_libraries(${PROJECT_NAME} PUBLIC
         #${PHYSX_LIBS}
         X11 Xrandr Xi Xxf86vm Xcursor
         pthread dl m

@@ -10,8 +10,7 @@
 #include <glad.h>
 #include <ostream>
 #include <iostream>
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+
 
 
 object::object(GLuint vbo):VBO(vbo){}

@@ -66,7 +66,6 @@ int main()
         return -1;
     }
 
-    buffer princ;
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window,framebuffer_size_callback);
 
@@ -82,7 +81,10 @@ int main()
     glfwSetCursorPosCallback(window, mouse_callback);
    
     
-
+    GLuint ssbo;
+    GLuint ubo;
+    glNamedBufferStorage(ssbo, 1e9, nullptr, GL_DYNAMIC_STORAGE_BIT);
+    glNamedBufferStorage(ubo, 1024, nullptr, GL_DYNAMIC_STORAGE_BIT);
 
     glEnable(GL_DEPTH_TEST);
 
@@ -138,9 +140,9 @@ int main()
     // Cleanup
 
     gui::liberer();
-
     glfwTerminate();
-    
+    glDeleteBuffers(1,&ssbo);
+    glDeleteBuffers(1,&ubo);
     return 0;
 
     

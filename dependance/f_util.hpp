@@ -9,7 +9,6 @@
 
 
 
-
 struct image
 {
     unsigned char *donne;

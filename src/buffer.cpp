@@ -20,8 +20,16 @@ buffer::~buffer(){
     glDeleteBuffers(1,&vbodym);
 }
 
-int buffer::get_cursord(){}
-int buffer::get_cursorp(){}
+int buffer::get_cursord(){
+
+    return 0;
+}
+int buffer::get_cursorp(){
+
+
+    return 0;
+
+}
 
 void buffer::add_mem_dym(int mem){}
 void buffer::add_mem_static(int mem){}

@@ -1,5 +1,5 @@
-#define GLM_SWIZZLE
-#define GLM_ENABLE_EXPERIMENTAL 
+#define GLM_FORCE_SWIZZLE
+
 
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
