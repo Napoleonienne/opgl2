@@ -25,12 +25,6 @@ CPMAddPackage(
         "ASSIMP_BUILD_ASSIMP_TOOLS OFF"
         "ASSIMP_BUILD_WERROR OFF"
 )
-CPMAddPackage(
-    NAME EnTT
-    GITHUB_REPOSITORY skypjack/entt
-    VERSION 3.16.0
- 
-)
 
 
 CPMAddPackage(
@@ -126,7 +120,6 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
     imgui 
     glfw          
     assimp::assimp 
-    EnTT::EnTT
     glm::glm
     OpenGL::GL
 )
