@@ -10,7 +10,7 @@
 #include <iostream>
 #include <vector>
 #include <printf.h>
-
+#include <ecs.hpp>
 #include <format>
 #include "CameraController.hpp"
 #include <memory>

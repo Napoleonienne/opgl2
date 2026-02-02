@@ -12,4 +12,6 @@ namespace ecs{
     void destroy_ent(entt::entity entity){
         registry.destroy(entity);
     }
+
+
 }
