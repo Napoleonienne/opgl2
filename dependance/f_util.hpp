@@ -1,7 +1,6 @@
 #pragma once
 #define STB_IMAGE_IMPLEMENTATION
 #include <iostream>
-#include <hashtable.h>
 #include <stb_image.h>
 #include <random>
 #include <vector>

@@ -1,8 +1,9 @@
 #pragma once
 #include <glm/gtc/type_ptr.hpp>
+import string
 
 template<typename T>
-void Shader::set(const std::string& name, const T& value) const {
+void set(const std::string& name, const T& value)  {
     GLint loc = glGetUniformLocation(ID, name.c_str());
 
     if constexpr (std::is_same_v<T, bool>) {

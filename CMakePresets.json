@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "clang-dev",
+      "displayName": "🚀 Clang Dev (Debug + Sanitizers)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_COMPILER": "clang++-19",
+        "CMAKE_C_COMPILER": "clang-19",
+        "CMAKE_CXX_FLAGS": "-stdlib=libc++ -fsanitize=address,undefined",
+        "CMAKE_EXE_LINKER_FLAGS": "-stdlib=libc++ -lc++abi -fuse-ld=lld",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "clang-release",
+      "displayName": "⚡ Clang Release (Optimisé)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_COMPILER": "clang++-19",
+        "CMAKE_C_COMPILER": "clang-19",
+        "CMAKE_CXX_FLAGS": "-stdlib=libc++ -O3 -march=native -flto=thin",
+        "CMAKE_EXE_LINKER_FLAGS": "-stdlib=libc++ -lc++abi -fuse-ld=lld -flto=thin",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "clang-dev",
+      "configurePreset": "clang-dev"
+    },
+    {
+      "name": "clang-release",
+      "configurePreset": "clang-release"
+    }
+  ]
+}

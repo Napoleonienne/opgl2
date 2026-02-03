@@ -3,10 +3,7 @@
 
 #include <glad.h>        // Toujours avant glfw3.h
 #include <GLFW/glfw3.h>
-#include <gm.hpp>
-#include <Shader.hpp>    // Classe shader personnalisée
-#include "gui.hpp"
-#include <buffer.hpp>
+
 #include <iostream>
 #include <vector>
 #include <printf.h>
@@ -14,6 +11,7 @@
 #include <format>
 #include "CameraController.hpp"
 #include <memory>
+
 
 
 

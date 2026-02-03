@@ -1,5 +1,4 @@
 {
-    // Associe automatiquement les headers STL au langage C++
     "files.associations": {
         "*.h": "cpp",
         "*.vert": "glsl",
