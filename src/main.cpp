@@ -1,10 +1,10 @@
 // Charge les fonctions OpenGL
 
 
-#include <glad.h>        // Toujours avant glfw3.h
+#include <glad.h>        
 #include <GLFW/glfw3.h>
 #include <gm.hpp>
-#include <Shader.hpp>    // Classe shader personnalisée
+#include <Shader.hpp>    
 #include "gui.hpp"
 #include <buffer.hpp>
 #include <iostream>

@@ -1,0 +1,11 @@
+{
+    options = {
+        plat = "linux",
+        mode = "debug",
+        arch = "x86_64"
+    },
+    recheck = false,
+    mtimes = {
+        ["xmake.lua"] = 1770197531
+    }
+}

@@ -1,5 +1,4 @@
 {
-    // Associe automatiquement les headers STL au langage C++
     "files.associations": {
         "*.h": "cpp",
         "*.vert": "glsl",
@@ -68,18 +67,19 @@
     },
 
     // Configuration de l'extension CMake Tools
-    "cmake.sourceDirectory": "${workspaceFolder}",
-    "cmake.buildDirectory": "${workspaceFolder}/build",
-    "cmake.configureOnOpen": true,
-    "cmake.generator": "Unix Makefiles",
-    "cmake.configureArgs": [
-        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
-    ],
 
-    // Intellisense via CMake Tools
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
 
-    "cmake.debugConfig": {
-        "externalConsole": true,
-    },
+   
+    "xmake.executable": "xmake",
+    "xmake.project.workingDirectory": "${workspaceRoot}",
+    "xmake.buildLevel": "verbose",
+    "xmake.terminal.type": "integrated",
+    
+    // Pour que l'IntelliSense de VS Code ne soit pas perdu dans le brouillard
+    "C_Cpp.default.configurationProvider": "tboox.xmake",
+    
+    // Une vision vers l'avenir : compilation automatique lors de la sauvegarde
+    "xmake.build.autoRefresh": true,
+    "cmake.ignoreCMakeListsMissing": true
+
 }
