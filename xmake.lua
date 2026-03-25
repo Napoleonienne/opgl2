@@ -1,9 +1,11 @@
 -- Définition de l'horizon du projet
 set_project("OpenGL2")
 set_version("0.1")
+set_version()
+set_xmakever("3.0.6")
 
 -- Vers un futur standardisé
-set_languages("cxx23", "c")
+set_languages("cxx26", "c23")
 set_policy("check.auto_ignore_flags", false)
 
 -- Gestion des dépendances : le jardin des paquets
@@ -14,7 +16,6 @@ add_requires("glm 1.0.3")
 add_requires("spdlog 1.17.0")
 add_requires("joltphysics", {configs = {double_precision = false}})
 
--- L'optimisation, ce culte de la vitesse
 if not is_plat("windows") then
     add_cxflags("-O3", "-march=native")
 end

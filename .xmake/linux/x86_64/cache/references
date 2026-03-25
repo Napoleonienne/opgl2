@@ -1,11 +1,11 @@
 {
     packages = {
         "/home/guy/.xmake/packages/m/minizip/v1.3.1/66c7024854b841dbbc668b6fce8b65cb",
-        "/home/guy/.xmake/packages/a/assimp/v6.0.3/af99f84baef747d9ad8cc14e75a55c7a",
         "/home/guy/.xmake/packages/p/python/3.13.11/239f32c224c54650ba786eb3af8c9a66",
         "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e",
         "/home/guy/.xmake/packages/g/glm/1.0.3/dbf9c4e3c02245fb83daec08ad7da1e6",
         "/home/guy/.xmake/packages/s/spdlog/v1.17.0/10ef3ed225104b47854ba5bc85145223",
-        "/home/guy/.xmake/packages/j/joltphysics/v5.5.0/103a2e24591e429eaf86351c29878e55"
+        "/home/guy/.xmake/packages/j/joltphysics/v5.5.0/103a2e24591e429eaf86351c29878e55",
+        "/home/guy/.xmake/packages/a/assimp/v6.0.3/af99f84baef747d9ad8cc14e75a55c7a"
     }
 }

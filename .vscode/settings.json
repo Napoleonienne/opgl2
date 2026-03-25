@@ -75,7 +75,6 @@
     "xmake.buildLevel": "verbose",
     "xmake.terminal.type": "integrated",
     
-    // Pour que l'IntelliSense de VS Code ne soit pas perdu dans le brouillard
     "C_Cpp.default.configurationProvider": "tboox.xmake",
     
     // Une vision vers l'avenir : compilation automatique lors de la sauvegarde

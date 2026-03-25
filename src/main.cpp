@@ -4,23 +4,20 @@
 #include <glad.h>        
 #include <GLFW/glfw3.h>
 #include <gm.hpp>
-#include <Shader.hpp>    
-#include "gui.hpp"
+#include <gui.hpp>
 #include <buffer.hpp>
 #include <iostream>
 #include <vector>
 #include <printf.h>
-#include <ecs.hpp>
 #include <format>
 #include "CameraController.hpp"
 #include <memory>
+#include <f_util.hpp>
 
 
-
-static GLFWcursorposfun s_previousCursorPosCallback = nullptr;
+const GLFWcursorposfun s_previousCursorPosCallback = nullptr;
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
-unsigned int chargerTexture(const char* chemin);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void APIENTRY glDebugOutput(GLenum source, GLenum type,GLuint id,GLenum severity, GLsizei length,const GLchar *message,const void *userParam);
@@ -93,8 +90,8 @@ int main()
     const glm::mat4 projection = glm::perspective(
         glm::radians(80.0f), 
         (float)SCR_WIDTH / (float)SCR_HEIGHT, 
-        0.1f, 
-        10000.2f);
+        10000.0f, 
+        0.1f);
 
  
 

@@ -1,23 +1,7 @@
 {
     cmdlines = {
-        "xmake check",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/config.lua",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/update_intellisense.lua .vscode clangd",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/explorer.lua",
-        "xmake check",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/update_intellisense.lua .vscode clangd",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/config.lua",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/explorer.lua",
-        "xmake check",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/config.lua",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/update_intellisense.lua .vscode clangd",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/explorer.lua",
-        "xmake check",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/config.lua",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/update_intellisense.lua .vscode clangd",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/explorer.lua",
-        "xmake check",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/explorer.lua",
-        "xmake l /home/guy/.vscode/extensions/tboox.xmake-vscode-2.5.4/assets/config.lua"
+        "xmake -v",
+        "xmake run OpenGL2",
+        "xmake check"
     }
 }
