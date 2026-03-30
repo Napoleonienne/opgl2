@@ -30,6 +30,15 @@ uniform sampler2D tex;
 uniform sampler2D texure_spec;
 
 
+vec3 diffuse(vec3){
+
+    vec3 lightDir = normalize(light.position - FragPos);
+    float diff = max(dot(norm, lightDir), 0.0);
+    vec3 diffuse = (material.diffuse*diff) * light.couleur;
+
+
+
+}
 void main()
 {
     // paramètres
@@ -40,7 +49,7 @@ void main()
     vec3 ambient =  vec3(material.ambient * light.couleur);
 
     // Composante diffuse
-    vec3 norm = normalize(normale);
+    vec3 norm = (normale);
     vec3 lightDir = normalize(light.position - FragPos);
     float diff = max(dot(norm, lightDir), 0.0);
     vec3 diffuse = (material.diffuse*diff) * light.couleur;

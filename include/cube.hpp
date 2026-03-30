@@ -6,6 +6,7 @@
 #include <string>
 #include <glad.h>
 #include <vector>
+#include "format"
 using std::vector;
 
 
@@ -15,7 +16,7 @@ using std::vector;
 
 class cube{
 public:
-cube(glm::vec3 origine,glm::vec3 dimension,const Shader &our,Materiaux mat):origine(origine),dimension(dimension),our(our),materiaux(mat)
+cube(glm::vec3 origine,glm::vec3 dimension,const Shader &our):origine(origine),dimension(dimension),our(our)
 {
 
 
@@ -46,15 +47,20 @@ void set_projection(glm::mat4 projection){
     our.set("projection",projection);
 }
 
+void materiaux(Materiaux mat,const char name){
+     
+    our.set(std::format("{}.ambiante",name),mat.ambiante);
+    our.set(std::format("{}.diffuse",name),mat.diffuse);
+    our.set(std::format("{}.speculaire",name),mat.speculaire);
+    our.set(std::format("{}.shininess",name),mat.shininess);
+}
+
 void afficher(){
 
 
     glm::mat3 matrixnormale = glm::transpose(glm::inverse(glm::mat3(model)));
     
-    our.set("Material.ambiante",materiaux.ambiante);
-    our.set("Material.diffuse",materiaux.diffuse);
-    our.set("Material.speculaire",materiaux.speculaire);
-    our.set("Material.shininess",materiaux.shininess);
+
     our.set("modelnormale",matrixnormale);
     our.set("model", model);
     our.use();
