@@ -1,4 +1,3 @@
-import 
 
 // L'ordre et la discipline remplacent le chaos des variables globales
 struct VertexInput
@@ -41,7 +40,7 @@ VertexOutput main(VertexInput input)
     output.FragPos = mul(model, float4(input.aPos, 1.0)).xyz;
 
     // La flagellation computationnelle continue avec une conversion explicite
-    float3x3 normalMatrix = (float3x3)transpose(inverse(model));
+    float3x3 normalMatrix = (float3x3)transpose((model));
     output.normale = mul(normalMatrix, input.aNORMALE);
 
     output.postexture = input.aPosTEX;

@@ -4,11 +4,11 @@
 #include <cmath>
 
 CameraController::CameraController(
-    glm::vec3& pos,
-    glm::vec3& front,
-    glm::vec3& up,
-    float& y,
-    float& p,
+    glm::vec3 pos,
+    glm::vec3 front,
+    glm::vec3 up,
+    float y,
+    float p,
     float& dt,
     int SCR_WIDTH,
     int SCR_HEIGHT
@@ -20,9 +20,19 @@ CameraController::CameraController(
     deltaTime(dt),
     firstMouse(true),
     lastX(SCR_WIDTH / 2.0f),
-    lastY(SCR_HEIGHT / 2.0f)
-{}
+    lastY(SCR_HEIGHT / 2.0f){};
 
+CameraController::CameraController( int SCR_WIDTH,
+                                    int SCR_HEIGHT,float& dt) 
+                        : cameraPos(glm::vec3(0.0f, 0.0f, 3.0f)),
+                         cameraFront(glm::vec3(0.0f, 0.0f, -1.0f)),
+                         cameraUp(glm::vec3(0.0f, 1.0f, 0.0f)),
+                         yaw(-90.0f),
+                         pitch(0.0f),
+                         deltaTime(dt),
+                         firstMouse(true),
+                         lastX(SCR_WIDTH / 2.0f),
+                         lastY(SCR_HEIGHT / 2.0f) {}
 // Gestion de la souris pour la rotation
 void CameraController::mouseCallback(double xpos, double ypos) {
     if (firstMouse) {
@@ -67,4 +77,8 @@ void CameraController::processInput(GLFWwindow* window) {
     if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) cameraPos += glm::vec3(0, 1, 0) * speed;
     if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) cameraPos -= glm::vec3(0, 1, 0) * speed;
     
+}
+
+glm::mat4 CameraController::getViewMatrix() {
+    return glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }

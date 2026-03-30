@@ -25,7 +25,7 @@ target("OpenGL2")
     set_kind("binary")
     
     -- Sources : le murmure des fichiers
-    add_files("src/**.cpp", "src/**.c")
+    add_files("src/**.cpp")
     
     -- Définitions globales
     add_defines("_FILE_OFFSET_BITS=64", "_LARGEFILE_SOURCE", "GLM_ENABLE_EXPERIMENTAL")

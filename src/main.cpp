@@ -12,7 +12,10 @@
 #include <format>
 #include "CameraController.hpp"
 #include <memory>
+#include "spdlog/spdlog.h"
 #include <f_util.hpp>
+#include "cube.hpp"
+
 
 
 const GLFWcursorposfun s_previousCursorPosCallback = nullptr;
@@ -23,21 +26,39 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void APIENTRY glDebugOutput(GLenum source, GLenum type,GLuint id,GLenum severity, GLsizei length,const GLchar *message,const void *userParam);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-
-glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);
-glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, 1.0f);
-glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
 float deltaTime = 1.0f; 
 float lastFrame = 1.0f;
-float yaw;
-float pitch;
-static double lastToggle = 0.0;
 float fov = 45.0f;
-CameraController camprincipale(cameraPos, cameraFront, cameraUp, yaw, pitch, deltaTime, SCR_WIDTH, SCR_HEIGHT);
+
+void mon_callback_pre(const char *name, GLADapiproc apiproc, int len_args, ...) {
+    spdlog::info("Appel de {}:  {}\n", name, len_args);
+    
+}
+
+// Ce callback vérifie les erreurs après chaque appel
+void mon_callback_post(void *ret, const char *name, GLADapiproc apiproc, int len_args, ...) {
+    GLenum error = glad_glGetError();
+    if (error != GL_NO_ERROR) {
+        spdlog::error("ERREUR GL dans {} : Code {}\n", name, error);
+    }
+}
+
+CameraController camprincipale(SCR_WIDTH, SCR_HEIGHT,deltaTime);
+
+struct Light {
+    glm::vec3 couleur;
+    glm::vec3 position;
+    glm::vec3 ambient;
+    glm::vec3 diffuse;
+    glm::vec3 specular;
+};
+
 
 
 int main()
 {
+    spdlog::set_level(spdlog::level::err);
+
     // Initialisation GLFW
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -55,7 +76,7 @@ int main()
     GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Cube Texturé", NULL, NULL);
     if (!window)
     {
-        std::cerr << "Échec de la création de la fenêtre GLFW" << std::endl;
+        spdlog::error("Échec de la création de la fenêtre GLFW");
         glfwTerminate();
         return -1;
     }
@@ -65,11 +86,15 @@ int main()
 
 
     // Initialisation GLAD
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    int version = gladLoadGL(glfwGetProcAddress);
+    printf("GL %d.%d\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
+     if (GLAD_VERSION_MAJOR(version) < 4 || (GLAD_VERSION_MAJOR(version) == 4 && GLAD_VERSION_MINOR(version) < 6))
     {
-        std::cerr << "Échec de l'initialisation de GLAD" << std::endl;
+        spdlog::error("OpenGL 4.6 n'est pas supporté" );
         return -1;
     }
+    gladSetGLPreCallback(mon_callback_pre);
+    gladSetGLPostCallback(mon_callback_post);
     
     glfwSetScrollCallback(window, scroll_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
@@ -77,8 +102,11 @@ int main()
     
     GLuint ssbo;
     GLuint ubo;
-    glNamedBufferStorage(ssbo, 1e9, nullptr, GL_DYNAMIC_STORAGE_BIT);
-    glNamedBufferStorage(ubo, 1024, nullptr, GL_DYNAMIC_STORAGE_BIT);
+    glCreateBuffers(1, &ssbo);
+    glCreateBuffers(1, &ubo);
+
+    glNamedBufferStorage(ssbo, 1024*1024, nullptr, GL_DYNAMIC_STORAGE_BIT);
+    glNamedBufferStorage(ubo, 1024*16, nullptr, GL_DYNAMIC_STORAGE_BIT);
 
     glEnable(GL_DEPTH_TEST);
 
@@ -92,9 +120,19 @@ int main()
         (float)SCR_WIDTH / (float)SCR_HEIGHT, 
         10000.0f, 
         0.1f);
+    
+    cube beta({0,0,0},{1,1,1},Shader("shader/cube.vs","shader/cube.fs"),MAT::Emeraude );
+    
+    
 
  
-
+    Light light = {
+        .couleur = glm::vec3(1.0f, 1.0f, 1.0f),
+        .position = glm::vec3(2.0f, 2.0f, 2.0f),
+        .ambient = glm::vec3(0.2f, 0.2f, 0.2f), 
+        .diffuse = glm::vec3(0.5f, 0.5f, 0.5f),
+        .specular = glm::vec3(1.0f, 1.0f, 1.0f)
+    };
   
 
 
@@ -111,7 +149,16 @@ int main()
         glClearColor(0.0f, 0.2f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         gui::nvframes();
+        gui::interface(camprincipale.getCameraPos());
 
+        beta.set_projection(projection);
+        beta.set_view(camprincipale.getViewMatrix());
+        beta.our.set("light.position", light.position);
+        beta.our.set("light.couleur", light.couleur);
+        beta.our.set("light.ambient", light.ambient);
+        beta.our.set("light.diffuse", light.diffuse);
+        beta.our.set("light.specular", light.specular);
+        beta.afficher();
 
 
 
@@ -137,6 +184,7 @@ int main()
     glfwTerminate();
     glDeleteBuffers(1,&ssbo);
     glDeleteBuffers(1,&ubo);
+
     return 0;
 
     
@@ -171,9 +219,10 @@ void processInput(GLFWwindow *window)
 
 
     
-    if (qPressed && qWasPressed && (now - lastToggle) >1.0f )
+    static double lastToggle = 0.0;
+    if (qPressed && qWasPressed && (now - lastToggle) > 1.0f )
     {
-        static double lastToggle = now;
+        lastToggle = now;
         if (souris == true){
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         }else
@@ -201,6 +250,36 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 
 
+
+const char* getDebugSource(GLenum source) {
+    switch (source) {
+        case GL_DEBUG_SOURCE_API: return "API";
+        case GL_DEBUG_SOURCE_WINDOW_SYSTEM: return "Window System";
+        case GL_DEBUG_SOURCE_SHADER_COMPILER: return "Shader Compiler";
+        case GL_DEBUG_SOURCE_THIRD_PARTY: return "Third Party";
+        case GL_DEBUG_SOURCE_APPLICATION: return "Application";
+        case GL_DEBUG_SOURCE_OTHER: return "Other";
+        default: return "Unknown";
+    }
+}
+
+const char* getDebugType(GLenum type) {
+    switch (type) {
+        case GL_DEBUG_TYPE_ERROR: return "Error";
+        case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR: return "Deprecated Behaviour";
+        case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR: return "Undefined Behaviour";
+        case GL_DEBUG_TYPE_PORTABILITY: return "Portability";
+        case GL_DEBUG_TYPE_PERFORMANCE: return "Performance";
+        case GL_DEBUG_TYPE_MARKER: return "Marker";
+        case GL_DEBUG_TYPE_PUSH_GROUP: return "Push Group";
+        case GL_DEBUG_TYPE_POP_GROUP: return "Pop Group";
+        case GL_DEBUG_TYPE_OTHER: return "Other";
+        default: return "Unknown";
+    }
+}
+
+
+
 void APIENTRY glDebugOutput(GLenum source,
                             GLenum type,
                             GLuint id,
@@ -212,58 +291,23 @@ void APIENTRY glDebugOutput(GLenum source,
     // on ignore les codes ou avertissements non significatifs
     if(id == 131169 || id == 131185 || id == 131218 || id == 131204)
         return;
-    std::cout << "---------------" << std::endl;
-    std::cout << "Debug message (" << id << "): " <<  message << std::endl;
-    switch (source)
-    {
-        case GL_DEBUG_SOURCE_API:
-        std::cout << "Source: API"; break;
-        case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
-        std::cout << "Source: Window System"; break;
-        case GL_DEBUG_SOURCE_SHADER_COMPILER:
-        std::cout << "Source: Shader Compiler"; break;
-        case GL_DEBUG_SOURCE_THIRD_PARTY:
-        std::cout << "Source: Third Party"; break;
-        case GL_DEBUG_SOURCE_APPLICATION:
-        std::cout << "Source: Application"; break;
-        case GL_DEBUG_SOURCE_OTHER:
-        std::cout << "Source: Other"; break;
+        switch (severity) {
+        case GL_DEBUG_SEVERITY_HIGH: 
+            spdlog::error("GL DEBUG HIGH: {} (Source: {}, Type: {})\n", message, getDebugSource(source), getDebugType(type));
+            break;
+        case GL_DEBUG_SEVERITY_MEDIUM: 
+            spdlog::warn("GL DEBUG MEDIUM: {} (Source: {}, Type: {})\n", message, getDebugSource(source), getDebugType(type));
+            break;
+        case GL_DEBUG_SEVERITY_LOW: 
+            spdlog::info("GL DEBUG LOW: {} (Source: {}, Type: {})\n", message, getDebugSource(source), getDebugType(type));
+            break;
+        case GL_DEBUG_SEVERITY_NOTIFICATION: 
+            spdlog::debug("GL DEBUG NOTIFICATION: {} (Source: {}, Type: {})\n", message, getDebugSource(source), getDebugType(type));
+            break;
+        default: 
+            spdlog::error("GL DEBUG UNKNOWN: {} (Source: {}, Type: {})\n", message, getDebugSource(source), getDebugType(type));
+            break;
     }
-    std::cout << std::endl;
-    switch (type)
-    {
-        case GL_DEBUG_TYPE_ERROR:
-        std::cout << "Type: Error"; break;
-        case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
-        std::cout << "Type: Deprecated Behaviour"; break;
-        case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
-        std::cout << "Type: Undefined Behaviour"; break;
-        case GL_DEBUG_TYPE_PORTABILITY:
-        std::cout << "Type: Portability"; break;
-        case GL_DEBUG_TYPE_PERFORMANCE:
-        std::cout << "Type: Performance"; break;
-        case GL_DEBUG_TYPE_MARKER:
-       std::cout << "Type: Marker"; break;
-        case GL_DEBUG_TYPE_PUSH_GROUP:
-        std::cout << "Type: Push Group"; break;
-        case GL_DEBUG_TYPE_POP_GROUP:
-        std::cout << "Type: Pop Group"; break;
-        case GL_DEBUG_TYPE_OTHER:
-        std::cout << "Type: Other"; break;
-    }
-    std::cout << std::endl;
-    switch (severity)
-    {
-        case GL_DEBUG_SEVERITY_HIGH:
-        std::cout << "Severity: high"; break;
-        case GL_DEBUG_SEVERITY_MEDIUM:
-        std::cout << "Severity: medium"; break;
-        case GL_DEBUG_SEVERITY_LOW:
-        std::cout << "Severity: low"; break;
-        case GL_DEBUG_SEVERITY_NOTIFICATION:
-        std::cout << "Severity: notification"; break;
-    }
-    std::cout << std::endl;
-    std::cout << std::endl;
+
 }
 

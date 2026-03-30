@@ -27,12 +27,14 @@ namespace gui
     }
 
 
-    void interface(glm::vec3 *couleur){
+    void interface(glm::vec3 position){
         ImGui::Begin("Contrôle");
+        ImGui::Text("Position de la caméra :");
+        ImGui::Text("X: %.2f", position.x);
+        ImGui::Text("Y: %.2f", position.y);
+        ImGui::Text("Z: %.2f", position.z);
 
 
-
- 
 
         ImGui::End();
     }

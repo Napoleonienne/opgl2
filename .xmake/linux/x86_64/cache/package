@@ -1,6 +1,81 @@
 {
+    imgui = {
+        installdir = "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e",
+        linkdirs = "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/lib",
+        version = "v1.91.5",
+        sysincludedirs = {
+            "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/include",
+            "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/include/imgui",
+            "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/include/backends",
+            "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/include/misc/cpp",
+            "/usr/include/X11/dri"
+        },
+        __requirestr = "imgui 1.91.5",
+        __enabled = true,
+        links = {
+            "imgui",
+            "glfw",
+            "OpenGL",
+            "Xrandr",
+            "Xinerama",
+            "Xcursor",
+            "Xrender",
+            "X11",
+            "Xi",
+            "Xfixes",
+            "Xext",
+            "xcb",
+            "Xau",
+            "Xdmcp"
+        },
+        envs = {
+            PYTHONPATH = {
+                "/home/guy/.xmake/packages/p/python/3.13.11/239f32c224c54650ba786eb3af8c9a66/lib/python3.13/site-packages"
+            },
+            PATH = {
+                "/home/guy/.xmake/packages/n/ninja/v1.13.1/e7cc4735aeb048e6870171a23c4ee800/bin",
+                "/home/guy/.xmake/packages/c/cmake/4.2.1/bf711153e47044bdaa806a75cf88fe51/bin",
+                "/home/guy/.xmake/packages/p/pkg-config/0.29.2/a0aba256d7674c1bbee15f0ee1534e92/bin",
+                "/home/guy/.xmake/packages/p/pkg-config/0.29.2/a0aba256d7674c1bbee15f0ee1534e92/bin",
+                "/home/guy/.xmake/packages/p/python/3.13.11/239f32c224c54650ba786eb3af8c9a66/bin",
+                "/home/guy/.xmake/packages/p/python/3.13.11/239f32c224c54650ba786eb3af8c9a66/bin",
+                "/home/guy/.xmake/packages/p/python/3.13.11/239f32c224c54650ba786eb3af8c9a66/Scripts"
+            },
+            LD_LIBRARY_PATH = {
+                "/home/guy/.xmake/packages/l/libxau/1.0.12/f28a3a7249e64bfeafc481e65ce195a9/lib",
+                "/home/guy/.xmake/packages/l/libxdmcp/1.1.5/a6cb092dadef40c2ad61859651220fa2/lib",
+                "/home/guy/.xmake/packages/l/libxcb/1.17.0/8212376093344ea7a7a61a715b1bcdd5/lib",
+                "/home/guy/.xmake/packages/l/libx11/1.8.12/5b3492e889e848b2b511e3f3031c5538/lib"
+            }
+        },
+        static = true,
+        __requireconfs = {
+            configs = {
+                glfw = true,
+                opengl3 = true
+            }
+        },
+        libfiles = {
+            "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/lib/libimgui.a",
+            "/usr/lib/x86_64-linux-gnu/libOpenGL.so"
+        },
+        license = "MIT"
+    },
+    spdlog = {
+        installdir = "/home/guy/.xmake/packages/s/spdlog/v1.17.0/10ef3ed225104b47854ba5bc85145223",
+        syslinks = "pthread",
+        __enabled = true,
+        version = "v1.17.0",
+        __requirestr = "spdlog 1.17.0",
+        sysincludedirs = "/home/guy/.xmake/packages/s/spdlog/v1.17.0/10ef3ed225104b47854ba5bc85145223/include",
+        license = "MIT"
+    },
     glfw = {
+        __enabled = true,
+        libfiles = "/usr/lib/x86_64-linux-gnu/libOpenGL.so",
         sysincludedirs = "/usr/include/X11/dri",
+        version = "3.3.10",
+        __requirestr = "glfw 3.4",
         links = {
             "glfw",
             "OpenGL",
@@ -16,10 +91,6 @@
             "Xau",
             "Xdmcp"
         },
-        version = "3.3.10",
-        __enabled = true,
-        __requirestr = "glfw 3.4",
-        libfiles = "/usr/lib/x86_64-linux-gnu/libOpenGL.so",
         envs = {
             PYTHONPATH = {
                 "/home/guy/.xmake/packages/p/python/3.13.11/239f32c224c54650ba786eb3af8c9a66/lib/python3.13/site-packages"
@@ -42,33 +113,70 @@
         }
     },
     glm = {
+        installdir = "/home/guy/.xmake/packages/g/glm/1.0.3/dbf9c4e3c02245fb83daec08ad7da1e6",
+        __enabled = true,
         sysincludedirs = "/home/guy/.xmake/packages/g/glm/1.0.3/dbf9c4e3c02245fb83daec08ad7da1e6/include",
         __requirestr = "glm 1.0.3",
-        __enabled = true,
-        installdir = "/home/guy/.xmake/packages/g/glm/1.0.3/dbf9c4e3c02245fb83daec08ad7da1e6",
         version = "1.0.3",
         license = "MIT"
     },
-    joltphysics = {
-        license = "MIT",
+    assimp = {
+        installdir = "/home/guy/.xmake/packages/a/assimp/v6.0.3/af99f84baef747d9ad8cc14e75a55c7a",
+        linkdirs = {
+            "/home/guy/.xmake/packages/a/assimp/v6.0.3/af99f84baef747d9ad8cc14e75a55c7a/lib",
+            "/home/guy/.xmake/packages/m/minizip/v1.3.1/66c7024854b841dbbc668b6fce8b65cb/lib"
+        },
+        version = "v6.0.3",
+        sysincludedirs = {
+            "/home/guy/.xmake/packages/a/assimp/v6.0.3/af99f84baef747d9ad8cc14e75a55c7a/include",
+            "/home/guy/.xmake/packages/m/minizip/v1.3.1/66c7024854b841dbbc668b6fce8b65cb/include",
+            "/home/guy/.xmake/packages/m/minizip/v1.3.1/66c7024854b841dbbc668b6fce8b65cb/include/minizip"
+        },
+        __requirestr = "assimp 6.0.3",
+        __enabled = true,
+        links = {
+            "assimp",
+            "minizip",
+            "z"
+        },
         envs = {
             PATH = {
                 "/home/guy/.xmake/packages/n/ninja/v1.13.1/e7cc4735aeb048e6870171a23c4ee800/bin",
                 "/home/guy/.xmake/packages/c/cmake/4.2.1/bf711153e47044bdaa806a75cf88fe51/bin"
             }
         },
-        __requirestr = "joltphysics",
+        static = true,
+        __requireconfs = {
+            configs = {
+                build_tools = false,
+                tests = false
+            }
+        },
+        libfiles = {
+            "/home/guy/.xmake/packages/a/assimp/v6.0.3/af99f84baef747d9ad8cc14e75a55c7a/lib/libassimp.a",
+            "/home/guy/.xmake/packages/m/minizip/v1.3.1/66c7024854b841dbbc668b6fce8b65cb/lib/libminizip.a"
+        },
+        license = "BSD-3-Clause"
+    },
+    joltphysics = {
+        installdir = "/home/guy/.xmake/packages/j/joltphysics/v5.5.0/103a2e24591e429eaf86351c29878e55",
         syslinks = "pthread",
+        linkdirs = "/home/guy/.xmake/packages/j/joltphysics/v5.5.0/103a2e24591e429eaf86351c29878e55/lib",
+        libfiles = "/home/guy/.xmake/packages/j/joltphysics/v5.5.0/103a2e24591e429eaf86351c29878e55/lib/libJolt.a",
         cxxflags = {
             "-msse2",
             "-mfpmath=sse"
         },
-        static = true,
-        linkdirs = "/home/guy/.xmake/packages/j/joltphysics/v5.5.0/103a2e24591e429eaf86351c29878e55/lib",
+        __requirestr = "joltphysics",
         __enabled = true,
-        sysincludedirs = "/home/guy/.xmake/packages/j/joltphysics/v5.5.0/103a2e24591e429eaf86351c29878e55/include",
         links = "Jolt",
-        version = "v5.5.0",
+        envs = {
+            PATH = {
+                "/home/guy/.xmake/packages/n/ninja/v1.13.1/e7cc4735aeb048e6870171a23c4ee800/bin",
+                "/home/guy/.xmake/packages/c/cmake/4.2.1/bf711153e47044bdaa806a75cf88fe51/bin"
+            }
+        },
+        sysincludedirs = "/home/guy/.xmake/packages/j/joltphysics/v5.5.0/103a2e24591e429eaf86351c29878e55/include",
         defines = {
             "JPH_OBJECT_LAYER_BITS=16",
             "JPH_PROFILE_ENABLED",
@@ -76,121 +184,13 @@
             "JPH_NO_DEBUG",
             "JPH_OBJECT_STREAM"
         },
-        installdir = "/home/guy/.xmake/packages/j/joltphysics/v5.5.0/103a2e24591e429eaf86351c29878e55",
-        libfiles = "/home/guy/.xmake/packages/j/joltphysics/v5.5.0/103a2e24591e429eaf86351c29878e55/lib/libJolt.a",
+        static = true,
         __requireconfs = {
             configs = {
                 double_precision = false
             }
-        }
-    },
-    spdlog = {
-        sysincludedirs = "/home/guy/.xmake/packages/s/spdlog/v1.17.0/10ef3ed225104b47854ba5bc85145223/include",
-        __enabled = true,
-        version = "v1.17.0",
-        syslinks = "pthread",
-        installdir = "/home/guy/.xmake/packages/s/spdlog/v1.17.0/10ef3ed225104b47854ba5bc85145223",
-        __requirestr = "spdlog 1.17.0",
+        },
+        version = "v5.5.0",
         license = "MIT"
-    },
-    assimp = {
-        __requirestr = "assimp 6.0.3",
-        installdir = "/home/guy/.xmake/packages/a/assimp/v6.0.3/af99f84baef747d9ad8cc14e75a55c7a",
-        static = true,
-        envs = {
-            PATH = {
-                "/home/guy/.xmake/packages/n/ninja/v1.13.1/e7cc4735aeb048e6870171a23c4ee800/bin",
-                "/home/guy/.xmake/packages/c/cmake/4.2.1/bf711153e47044bdaa806a75cf88fe51/bin"
-            }
-        },
-        __enabled = true,
-        license = "BSD-3-Clause",
-        links = {
-            "assimp",
-            "minizip",
-            "z"
-        },
-        version = "v6.0.3",
-        linkdirs = {
-            "/home/guy/.xmake/packages/a/assimp/v6.0.3/af99f84baef747d9ad8cc14e75a55c7a/lib",
-            "/home/guy/.xmake/packages/m/minizip/v1.3.1/66c7024854b841dbbc668b6fce8b65cb/lib"
-        },
-        sysincludedirs = {
-            "/home/guy/.xmake/packages/a/assimp/v6.0.3/af99f84baef747d9ad8cc14e75a55c7a/include",
-            "/home/guy/.xmake/packages/m/minizip/v1.3.1/66c7024854b841dbbc668b6fce8b65cb/include",
-            "/home/guy/.xmake/packages/m/minizip/v1.3.1/66c7024854b841dbbc668b6fce8b65cb/include/minizip"
-        },
-        libfiles = {
-            "/home/guy/.xmake/packages/a/assimp/v6.0.3/af99f84baef747d9ad8cc14e75a55c7a/lib/libassimp.a",
-            "/home/guy/.xmake/packages/m/minizip/v1.3.1/66c7024854b841dbbc668b6fce8b65cb/lib/libminizip.a"
-        },
-        __requireconfs = {
-            configs = {
-                tests = false,
-                build_tools = false
-            }
-        }
-    },
-    imgui = {
-        __requirestr = "imgui 1.91.5",
-        installdir = "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e",
-        static = true,
-        license = "MIT",
-        sysincludedirs = {
-            "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/include",
-            "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/include/imgui",
-            "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/include/backends",
-            "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/include/misc/cpp",
-            "/usr/include/X11/dri"
-        },
-        __enabled = true,
-        links = {
-            "imgui",
-            "glfw",
-            "OpenGL",
-            "Xrandr",
-            "Xinerama",
-            "Xcursor",
-            "Xrender",
-            "X11",
-            "Xi",
-            "Xfixes",
-            "Xext",
-            "xcb",
-            "Xau",
-            "Xdmcp"
-        },
-        version = "v1.91.5",
-        envs = {
-            PYTHONPATH = {
-                "/home/guy/.xmake/packages/p/python/3.13.11/239f32c224c54650ba786eb3af8c9a66/lib/python3.13/site-packages"
-            },
-            PATH = {
-                "/home/guy/.xmake/packages/n/ninja/v1.13.1/e7cc4735aeb048e6870171a23c4ee800/bin",
-                "/home/guy/.xmake/packages/c/cmake/4.2.1/bf711153e47044bdaa806a75cf88fe51/bin",
-                "/home/guy/.xmake/packages/p/pkg-config/0.29.2/a0aba256d7674c1bbee15f0ee1534e92/bin",
-                "/home/guy/.xmake/packages/p/pkg-config/0.29.2/a0aba256d7674c1bbee15f0ee1534e92/bin",
-                "/home/guy/.xmake/packages/p/python/3.13.11/239f32c224c54650ba786eb3af8c9a66/bin",
-                "/home/guy/.xmake/packages/p/python/3.13.11/239f32c224c54650ba786eb3af8c9a66/bin",
-                "/home/guy/.xmake/packages/p/python/3.13.11/239f32c224c54650ba786eb3af8c9a66/Scripts"
-            },
-            LD_LIBRARY_PATH = {
-                "/home/guy/.xmake/packages/l/libxau/1.0.12/f28a3a7249e64bfeafc481e65ce195a9/lib",
-                "/home/guy/.xmake/packages/l/libxdmcp/1.1.5/a6cb092dadef40c2ad61859651220fa2/lib",
-                "/home/guy/.xmake/packages/l/libxcb/1.17.0/8212376093344ea7a7a61a715b1bcdd5/lib",
-                "/home/guy/.xmake/packages/l/libx11/1.8.12/5b3492e889e848b2b511e3f3031c5538/lib"
-            }
-        },
-        linkdirs = "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/lib",
-        libfiles = {
-            "/home/guy/.xmake/packages/i/imgui/v1.91.5/e55f1e3d3704452fb65c94ae86516a2e/lib/libimgui.a",
-            "/usr/lib/x86_64-linux-gnu/libOpenGL.so"
-        },
-        __requireconfs = {
-            configs = {
-                glfw = true,
-                opengl3 = true
-            }
-        }
     }
 }

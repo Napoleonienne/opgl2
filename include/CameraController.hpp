@@ -4,25 +4,32 @@
 
 class CameraController {
 public:
-    glm::vec3& cameraPos;
-    glm::vec3& cameraFront;
-    glm::vec3& cameraUp;
-    float& yaw;
-    float& pitch;
+    glm::vec3 cameraPos;
+    glm::vec3 cameraFront;
+    glm::vec3 cameraUp;
+    float yaw;
+    float pitch;
     float &deltaTime;
 
     float lastX, lastY;
     bool firstMouse;
 
-    CameraController(glm::vec3& pos,
-                     glm::vec3& front,
-                     glm::vec3& up,
-                     float& y,
-                     float& p,
-                     float& dt,
+
+    CameraController(glm::vec3 pos,
+                     glm::vec3 front,
+                     glm::vec3 up,
+                     float y,
+                     float p,
+                     float &dt,
                      int SCR_WIDTH,
                      int SCR_HEIGHT);
-        
+
+    CameraController( int SCR_WIDTH,
+    int SCR_HEIGHT,float& dt);
+
+    glm::mat4 getViewMatrix();
+    
+    glm::vec3 getCameraPos() const { return cameraPos; }
 
     void mouseCallback(double xpos, double ypos);
     void scrollCallback(double yoffset, float& fov);
