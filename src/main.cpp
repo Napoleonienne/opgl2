@@ -30,18 +30,6 @@ float deltaTime = 1.0f;
 float lastFrame = 1.0f;
 float fov = 45.0f;
 
-void mon_callback_pre(const char *name, GLADapiproc apiproc, int len_args, ...) {
-    spdlog::info("Appel de {}:  {}\n", name, len_args);
-    
-}
-
-// Ce callback vérifie les erreurs après chaque appel
-void mon_callback_post(void *ret, const char *name, GLADapiproc apiproc, int len_args, ...) {
-    GLenum error = glad_glGetError();
-    if (error != GL_NO_ERROR) {
-        spdlog::error("ERREUR GL dans {} : Code {}\n", name, error);
-    }
-}
 
 CameraController camprincipale(SCR_WIDTH, SCR_HEIGHT,deltaTime);
 
@@ -53,6 +41,19 @@ struct Light {
     glm::vec3 specular;
 };
 
+
+void mon_callback_pre(const char *name, GLADapiproc apiproc, int len_args, ...) {
+    //spdlog::info("Appel de {}:  {}\n", name, len_args);
+
+}
+
+// Ce callback vérifie les erreurs après chaque appel
+void mon_callback_post(void *ret, const char *name, GLADapiproc apiproc, int len_args, ...) {
+GLenum error = glad_glGetError();
+if (error != GL_NO_ERROR) {
+    //spdlog::error("ERREUR GL dans {} : Code {}\n", name, error);
+}
+}
 
 
 int main()
@@ -85,19 +86,23 @@ int main()
     glfwSetFramebufferSizeCallback(window,framebuffer_size_callback);
 
 
+
     // Initialisation GLAD
     int version = gladLoadGL(glfwGetProcAddress);
-    printf("GL %d.%d\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
+    spdlog::info("GL %d.%d\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
+
      if (GLAD_VERSION_MAJOR(version) < 4 || (GLAD_VERSION_MAJOR(version) == 4 && GLAD_VERSION_MINOR(version) < 6))
+     
     {
         spdlog::error("OpenGL 4.6 n'est pas supporté" );
         return -1;
     }
-    gladSetGLPreCallback(mon_callback_pre);
-    gladSetGLPostCallback(mon_callback_post);
+
     
     glfwSetScrollCallback(window, scroll_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
+    gladSetGLPreCallback(mon_callback_pre);
+    gladSetGLPostCallback(mon_callback_post);
    
     
     GLuint ssbo;

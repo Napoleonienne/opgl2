@@ -89,7 +89,6 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* com
 
 
 
-
     GLuint vertex = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertex, 1, &vShaderCode, nullptr);
     glCompileShader(vertex);
@@ -132,15 +131,13 @@ void Shader::checkCompileErrors(GLuint shader, const std::string &type) const {
         glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
         if (!success) {
             glGetShaderInfoLog(shader, 1024, nullptr, infoLog);
-            std::cerr << "ERROR::SHADER_COMPILATION_ERROR of type: " << type << "\n"
-                      << infoLog << "\n-- --------------------------------------------------- --\n";
+           spdlog::error( "ERROR::SHADER_COMPILATION_ERROR of type:{} \n {}",type,infoLog);
         }
     } else {
         glGetProgramiv(shader, GL_LINK_STATUS, &success);
         if (!success) {
             glGetProgramInfoLog(shader, 1024, nullptr, infoLog);
-            std::cerr << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << "\n"
-                      << infoLog << "\n-- --------------------------------------------------- --\n";
+            spdlog::error("ERROR::PROGRAM_LINKING_ERROR of type:{} \n {}",type ,infoLog);
         }
     }
 }
