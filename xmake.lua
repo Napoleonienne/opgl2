@@ -14,7 +14,7 @@ add_requires("imgui 1.91.5", {configs = {glfw = true, opengl3 = true}})
 add_requires("glfw 3.4")
 add_requires("glm 1.0.3")
 add_requires("spdlog 1.17.0")
-add_requires("joltphysics", {configs = {double_precision = false}})
+--add_requires("joltphysics", {configs = {double_precision = false}})
 
 if not is_plat("windows") then
     add_cxflags("-O3", "-march=native")

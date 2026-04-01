@@ -6,12 +6,8 @@
 #include <gm.hpp>
 #include <gui.hpp>
 #include <buffer.hpp>
-#include <iostream>
-#include <vector>
 #include <printf.h>
-#include <format>
 #include "CameraController.hpp"
-#include <memory>
 #include "spdlog/spdlog.h"
 #include <f_util.hpp>
 #include "cube.hpp"
@@ -117,6 +113,7 @@ int main()
 
 
     gui::init(window);
+    
 
 
     // Matrices
@@ -124,9 +121,10 @@ int main()
         glm::radians(80.0f), 
         (float)SCR_WIDTH / (float)SCR_HEIGHT, 
         10000.0f, 
-        0.1f);
+        0.1f
+    );
     
-    cube beta({0,0,0},{1,1,1},Shader("shader/cube.vs","shader/cube.fs"),MAT::Emeraude );
+    cube cube1({0,0,0},{1,1,1},Shader("shader/cube.vs","shader/cube.fs") );
     
     
 
@@ -156,14 +154,14 @@ int main()
         gui::nvframes();
         gui::interface(camprincipale.getCameraPos());
 
-        beta.set_projection(projection);
-        beta.set_view(camprincipale.getViewMatrix());
-        beta.our.set("light.position", light.position);
-        beta.our.set("light.couleur", light.couleur);
-        beta.our.set("light.ambient", light.ambient);
-        beta.our.set("light.diffuse", light.diffuse);
-        beta.our.set("light.specular", light.specular);
-        beta.afficher();
+        cube1.set_projection(projection);
+        cube1.set_view(camprincipale.getViewMatrix());
+        cube1.our.set("light.position", light.position);
+        cube1.our.set("light.couleur", light.couleur);
+        cube1.our.set("light.ambient", light.ambient);
+        cube1.our.set("light.diffuse", light.diffuse);
+        cube1.our.set("light.specular", light.specular);
+        cube1.afficher();
 
 
 
