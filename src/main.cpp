@@ -11,10 +11,11 @@
 #include "spdlog/spdlog.h"
 #include <f_util.hpp>
 #include "cube.hpp"
+#include <format>
 
 
 
-const GLFWcursorposfun s_previousCursorPosCallback = nullptr;
+const GLFWcursorposfun s_previousCursorPosCallback = nullptr;<<<<<<P
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -100,7 +101,6 @@ int main()
     gladSetGLPreCallback(mon_callback_pre);
     gladSetGLPostCallback(mon_callback_post);
    
-    
     GLuint ssbo;
     GLuint ubo;
     glCreateBuffers(1, &ssbo);
@@ -123,8 +123,9 @@ int main()
         10000.0f, 
         0.1f
     );
+    auto v = Shader(std::format("{}/shader/cube.vs",DOSSIER_CODE).c_str(),std::format("{}/shader/cube.fs",DOSSIER_CODE).c_str());
     
-    cube cube1({0,0,0},{1,1,1},Shader("shader/cube.vs","shader/cube.fs") );
+    cube cube1({0,0,0},{1,1,1},v );
     
     
 
@@ -294,7 +295,7 @@ void APIENTRY glDebugOutput(GLenum source,
     // on ignore les codes ou avertissements non significatifs
     if(id == 131169 || id == 131185 || id == 131218 || id == 131204)
         return;
-        switch (severity) {
+    switch (severity) {
         case GL_DEBUG_SEVERITY_HIGH: 
             spdlog::error("GL DEBUG HIGH: {} (Source: {}, Type: {})\n", message, getDebugSource(source), getDebugType(type));
             break;
@@ -310,7 +311,7 @@ void APIENTRY glDebugOutput(GLenum source,
         default: 
             spdlog::error("GL DEBUG UNKNOWN: {} (Source: {}, Type: {})\n", message, getDebugSource(source), getDebugType(type));
             break;
-    }
+}
 
 }
 

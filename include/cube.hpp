@@ -71,12 +71,7 @@ void texture(const std::string name,uint texture){
     our.settex(name,texture);
 }
 Shader our;
-Materiaux materiaux = {
-    .ambiante = glm::vec3(0.2f, 0.2f, 0.2f),
-    .diffuse = glm::vec3(0.5f, 0.5f, 0.5f),
-    .speculaire = glm::vec3(1.0f, 1.0f, 1.0f),
-    .shininess = 32.0f
-};
+
 
 ~cube(){
     glDeleteBuffers(1,&vbo);

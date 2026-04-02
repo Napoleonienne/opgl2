@@ -7,8 +7,7 @@ set_xmakever("3.0.6")
 -- Vers un futur standardisé
 set_languages("cxx26", "c23")
 set_policy("check.auto_ignore_flags", false)
-
--- Gestion des dépendances : le jardin des paquets
+add_defines("DOSSIER_CODE=\"" .. os.projectdir():gsub("\\", "/") .. "\"")-- Gestion des dépendances : le jardin des paquets
 add_requires("assimp 6.0.3", {configs = {tests = false, build_tools = false}})
 add_requires("imgui 1.91.5", {configs = {glfw = true, opengl3 = true}})
 add_requires("glfw 3.4")
