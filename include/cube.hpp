@@ -71,12 +71,7 @@ void texture(const std::string name,uint texture){
     our.settex(name,texture);
 }
 Shader our;
-Materiaux materiaux = {
-    .ambiante = glm::vec3(0.2f, 0.2f, 0.2f),
-    .diffuse = glm::vec3(0.5f, 0.5f, 0.5f),
-    .speculaire = glm::vec3(1.0f, 1.0f, 1.0f),
-    .shininess = 32.0f
-};
+
 
 ~cube(){
     glDeleteBuffers(1,&vbo);
@@ -142,11 +137,11 @@ void construre(){
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, vertice));
     glEnableVertexAttribArray(0);  
 
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, uv));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, uv));
     glEnableVertexAttribArray(1);
 
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, normale));
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, normale));
     glEnableVertexAttribArray(2);
 
   

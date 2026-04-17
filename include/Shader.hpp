@@ -4,7 +4,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glad.h>
-#include <Shader.hpp>
+#include "spdlog/spdlog.h"
 
 
 
@@ -15,7 +15,7 @@ public:
     Shader(const char* vertexPath, const char* fragmentPath);
     Shader(const char* vertexPath, const char* fragmentPath, const char* computePath);
 
-
+    
 
 
 
