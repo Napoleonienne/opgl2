@@ -98,12 +98,7 @@ int main()
     
     GLuint ssbo;
     GLuint ubo;
-    glCreateBuffers(1, &ssbo);
-    glCreateBuffers(1, &ubo);
-
-    glNamedBufferStorage(ssbo, 1024*1024, nullptr, GL_DYNAMIC_STORAGE_BIT);
-    glNamedBufferStorage(ubo, 1024*16, nullptr, GL_DYNAMIC_STORAGE_BIT);
-
+*
     glEnable(GL_DEPTH_TEST);
 
 
